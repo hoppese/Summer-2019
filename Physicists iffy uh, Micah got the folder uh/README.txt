@@ -1,0 +1,1 @@
+there's a whole world out there and you're just sitting inside repainting your funkopops, disgusting
