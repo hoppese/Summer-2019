@@ -18,6 +18,8 @@ def setup_run(argv):
     params_import = import_params(param_file)
     params = dict(default_params(), **params_import)
 
+    return params
+
 def default_params():
     return {'p': 10,
             'e': 0.7,
