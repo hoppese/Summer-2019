@@ -1,1 +1,1 @@
-This is a repo for Summer 2019 rresearch
+This is a repo for Summer 2019 research
