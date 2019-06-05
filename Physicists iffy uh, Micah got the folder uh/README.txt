@@ -1,1 +1,42 @@
 there's a whole world out there and you're just sitting inside repainting your funkopops, disgusting
+OWNED WITH FACTS AND LOGIC
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+summa lumma dooma looma you assumin i'm a human what i gotta do to get it through to you i'm superhuman
