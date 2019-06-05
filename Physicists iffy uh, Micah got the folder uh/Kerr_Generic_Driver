@@ -1,0 +1,9 @@
+#!/usr/bin/env python
+
+from Kerr_Generic_Orbits import *
+from StolemParams import *
+
+params = setup_run(sys.argv)
+
+print('T_kn values:',Tkn(params['p'],params['e'],params['M'],params['mu'],params['Thetamin'],params['a'],params['plmi'],params['disc'])))
+print('Phi_kn values:',Phikn(params['p'],params['e'],params['M'],params['mu'],params['Thetamin'],params['a'],params['plmi'],params['disc']))
