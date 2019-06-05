@@ -1,0 +1,51 @@
+#!/usr/bin/env python
+
+from initial_data import *
+from params import *
+from MOL import *
+from spatialFD import *
+from spatialPS import *
+from spatialDG import *
+from output import *
+
+params = setup_run(sys.argv)
+
+print(params)
+
+print_message(params,'Beginning')
+
+method_dict = {'FD-C4': du_dx_4th_order,
+               'FD-C2': du_dx_midpoint,
+               'FD-F2': du_dx_forward_2ndO,
+               'FD-B2': du_dx_backward_2ndO,
+               'PS': du_dx_spec}
+
+if params['method'] in list(method_dict.keys()):
+    xs = np.linspace(params['x_min'],
+                     params['x_max'],
+                     params['nx'],
+                     endpoint=False)
+
+    dx_min = xs[1] - xs[0]
+
+elif params['method'] == 'DG':
+    print('Goodbye')
+    exit(5)
+
+else:
+    print('Method ' +  params['method'] + ' not supported')
+    exit(4)
+
+u_init  = initial_data(xs)
+u_final = evolve(u_init, dx_min,
+                 params['t_init'],
+                 params['t_final'],
+                 params['CF'],
+                 method_dict[params['method']],
+                 RK4_step)
+
+output_data_1D(params, 'u.dat', xs, u_final)
+
+params['runlog'].close()
+
+print('Done.')

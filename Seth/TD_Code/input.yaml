@@ -1,0 +1,27 @@
+x_min: 0
+x_max: 1
+
+nx: 200
+
+K: 4
+Np: 5
+
+CF: 1.0e-1
+t_init: 0
+t_final: .1
+
+output_data: True
+output_directory: 'CWD'
+
+equation: 'advec_l2r'   # Options:
+                        # 'advec_l2r'
+                        # 'advec_r2l'
+                        # 'wave'
+
+method: 'FD-C4'   # Options:
+                  # 'FD-C4' - 4th order central Finite differencing
+                  # 'FD-C2' - 2nd order central Finite differencing
+                  # 'FD-F2' - 2nd order forward Finite differencing
+                  # 'FD-B2' - 2nd order backward Finite differencing
+                  # 'PS' - Pseudo spectral
+                  # 'DG' - Discontinuous Galerkin
