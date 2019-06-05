@@ -1,3 +1,14 @@
+import numpy as np
+import scipy
+from scipy import fftpack
+import yaml
+import sys
+import os
+import math
+import collections
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+
 def signa(a):
     if a > 0:
         eq = 1

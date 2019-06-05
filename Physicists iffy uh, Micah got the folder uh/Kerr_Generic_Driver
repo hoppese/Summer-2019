@@ -2,18 +2,10 @@
 
 from Kerr_Generic_Orbits import *
 from StolenParams import *
-import numpy as np
-import scipy
-from scipy import fftpack
-import yaml
-import sys
-import os
-import math
-import collections
-from scipy.integrate import odeint
-import matplotlib.pyplot as plt
+
 
 params = setup_run(sys.argv)
 
+print(params)
 print('T_kn values:',Tkn(params['p'],params['e'],params['M'],params['mu'],params['Thetamin'],params['a'],params['plmi'],params['disc']))
 print('Phi_kn values:',Phikn(params['p'],params['e'],params['M'],params['mu'],params['Thetamin'],params['a'],params['plmi'],params['disc']))
