@@ -449,3 +449,115 @@ def convtest(f,p,e,M,mu,Thetamin,a,plmi):
     comp = [np.log10(np.abs(values[i] - testval)) for i in range(5)]
     plt.plot(xvalues,comp)
     plt.show()
+
+def dt_dmino(minovar,p,e,M,mu,Thetamin,a,plmi,disc):
+    sum1 = 0
+    Upsilon_theta_ = Upsilon_theta(p,e,M,mu,Thetamin,a,plmi)
+    Upsilon_r_ = Upsilon_r(p,e,M,mu,Thetamin,a,plmi)
+    Tkns = np.zeros(1 + 2 * disc, dtype='complex')
+    Tkns[:] = Tkn(p,e,M,mu,Thetamin,a,plmi,disc)[:]
+    for i in range(1,disc+1):
+        stuff = Tkns[i] * np.exp(-1 * 1j * i * Upsilon_theta_ * minovar)
+        sum1 = sum1 + stuff + np.conj(stuff)
+    sum2 = 0
+    for i in range(1,disc+1):
+        stuff = Tkns[i+disc] * np.exp(-1 * 1j * i * Upsilon_r_ * minovar)
+        sum2 = sum2 +  stuff + np.conj(stuff)
+    eq = Tkns[0] + sum1 + sum2
+    return eq
+
+def dphi_dmino(minovar,p,e,M,mu,Thetamin,a,plmi,disc):
+    sum1 = 0
+    Upsilon_theta_ = Upsilon_theta(p,e,M,mu,Thetamin,a,plmi)
+    Upsilon_r_ = Upsilon_r(p,e,M,mu,Thetamin,a,plmi)
+    Phikns = np.zeros(1 + 2 * disc, dtype='complex')
+    Phikns[:] = Phikn(p,e,M,mu,Thetamin,a,plmi,disc)[:]
+    for i in range(1,disc+1):
+        stuff = Phikns[i] * np.exp(-1 * 1j * i * Upsilon_theta_ * minovar)
+        sum1 = sum1 + stuff + np.conj(stuff)
+    sum2 = 0
+    for i in range(1,disc+1):
+        stuff = Phikns[i+disc] * np.exp(-1 * 1j * i * Upsilon_r_ * minovar)
+        sum2 = sum2 +  stuff + np.conj(stuff)
+    eq = Phikns[0] + sum1 + sum2
+    return eq
+
+def delt_rj(p,e,M,mu,Thetamin,a,plmi,disc):
+    Tkns = np.zeros(1 + 2 * disc, dtype='complex')
+    Tkns[:] = Tkn(p,e,M,mu,Thetamin,a,plmi,disc)[:]
+    vals = np.zeros(disc, dtype='complex')
+    Upsilon_r_ = Upsilon_r(p,e,M,mu,Thetamin,a,plmi)
+    for i in range(1,disc+1):
+        vals[i-1] = (1j * Tkns[disc+i])/(i * Upsilon_r_)
+    return vals
+
+def delt_thetaj(p,e,M,mu,Thetamin,a,plmi,disc):
+    Tkns = np.zeros(1 + 2 * disc, dtype='complex')
+    Tkns[:] = Tkn(p,e,M,mu,Thetamin,a,plmi,disc)[:]
+    vals = np.zeros(disc, dtype='complex')
+    Upsilon_theta_ = Upsilon_theta(p,e,M,mu,Thetamin,a,plmi)
+    for i in range(1,disc+1):
+        vals[i-1] = (1j * Tkns[i])/(i * Upsilon_theta_)
+    return vals
+
+def delphi_rj(p,e,M,mu,Thetamin,a,plmi,disc):
+    Phikns = np.zeros(1 + 2 * disc, dtype='complex')
+    Phikns[:] = Phikn(p,e,M,mu,Thetamin,a,plmi,disc)[:]
+    vals = np.zeros(disc, dtype='complex')
+    Upsilon_r_ = Upsilon_r(p,e,M,mu,Thetamin,a,plmi)
+    for i in range(1,disc+1):
+        vals[i-1] = (1j * Phikns[disc+i])/(i * Upsilon_r_)
+    return vals
+
+def delphi_thetaj(p,e,M,mu,Thetamin,a,plmi,disc):
+    Phikns = np.zeros(1 + 2 * disc, dtype='complex')
+    Phikns[:] = Phikn(p,e,M,mu,Thetamin,a,plmi,disc)[:]
+    vals = np.zeros(disc, dtype='complex')
+    Upsilon_theta_ = Upsilon_theta(p,e,M,mu,Thetamin,a,plmi)
+    for i in range(1,disc+1):
+        vals[i-1] = (1j * Phikns[i])/(i * Upsilon_theta_)
+    return vals
+
+def delt(minovar,p,e,M,mu,Thetamin,a,plmi,disc):
+    rvals = np.zeros(disc)
+    rvals[:] = delt_rj(p,e,M,mu,Thetamin,a,plmi,disc)[:]
+    thetavals = np.zeros(disc)
+    thetavals[:] = delt_thetaj(p,e,M,mu,Thetamin,a,plmi,disc)[:]
+    Upsilon_r_ = Upsilon_r(p,e,M,mu,Thetamin,a,plmi,disc)
+    Upsilon_theta_ = Upsilon_theta(p,e,M,mu,Thetamin,a,plmi,disc)
+    sum1 = 0
+    for i in range(1,disc+1):
+        stuff = thetavals[i-1] * np.exp(-1 * 1j * i * Upsilon_theta_ * minovar)
+        sum1 = sum1 + stuff + np.conj(stuff)
+    sum2 = 0
+    for i in range(1,disc+1):
+        stuff = rvals[i-1] * np.exp(-1 * 1j * i * Upsilon_r_ * minovar)
+        sum2 = sum2 + stuff + np.conj(stuff)
+    eq = sum1 + sum2
+    return eq
+
+def delphi(minovar,p,e,M,mu,Thetamin,a,plmi,disc):
+    rvals = np.zeros(disc)
+    rvals[:] = delphi_rj(p,e,M,mu,Thetamin,a,plmi,disc)[:]
+    thetavals = np.zeros(disc)
+    thetavals[:] = delphi_thetaj(p,e,M,mu,Thetamin,a,plmi,disc)[:]
+    Upsilon_r_ = Upsilon_r(p,e,M,mu,Thetamin,a,plmi,disc)
+    Upsilon_theta_ = Upsilon_theta(p,e,M,mu,Thetamin,a,plmi,disc)
+    sum1 = 0
+    for i in range(1,disc+1):
+        stuff = thetavals[i-1] * np.exp(-1 * 1j * i * Upsilon_theta_ * minovar)
+        sum1 = sum1 + stuff + np.conj(stuff)
+    sum2 = 0
+    for i in range(1,disc+1):
+        stuff = rvals[i-1] * np.exp(-1 * 1j * i * Upsilon_r_ * minovar)
+        sum2 = sum2 + stuff + np.conj(stuff)
+    eq = sum1 + sum2
+    return eq
+
+def t_of_mino(minovar,p,e,M,mu,Thetamin,a,plmi,disc):
+    eq = Tkn(p,e,M,mu,Thetamin,a,plmi,disc)[0] * minovar + delt(minovar,p,e,M,mu,Thetamin,a,plmi,disc)
+    return eq
+
+def phi_of_mino(minovar,p,e,M,mu,Thetamin,a,plmi,disc):
+    eq = Phikn(p,e,M,mu,Thetamin,a,plmi,disc)[0] * minovar + delphi(minovar,p,e,M,mu,Thetamin,a,plmi,disc)
+    return eq
