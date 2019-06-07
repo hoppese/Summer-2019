@@ -1,15 +1,21 @@
-# Midpoint derivative
-def centerdudx(u, dx):
-    du = numpy.zeros(len(u))
+import numpy as np
+import scipy
+from scipy import special
+from matplotlib import pyplot as plt
+%matplotlib inline
+
+# Midpoint Derivative
+def centerdudx(u, info):
+    du = np.zeros(len(u))
     du[1:-1] = u[2:] - u[0:-2]
     du[0] = u[1] - u[-1]
     du[-1] = u[0] - u[-2]
 
-    return du / (2*dx)
+    return du / (2* info['dx'])
 
-# Fourier series derivative
-def fourierderivative(u, dx):
-    #print(len(u))
+
+# Fourier Transform Derivative
+def fourierderivative(u, info):
     fouru = np.fft.fft(u * 2 / (len(u)))
     fouru = np.conjugate(fouru)
 
@@ -20,14 +26,13 @@ def fourierderivative(u, dx):
         klist.append(i)
     for i in range(int(len(u)/2), 0, -1):
         klist.append(-1 * i)
-
     derfouru = fouru * np.array(klist)
 
-    der = np.fft.ifft(np.conjugate(derfouru) / 2 / dx)
+    der = np.fft.ifft(np.conjugate(derfouru) / 2 / info['dx'])
     return -1 * der
 
-# Discontinuos-Galerkin derivative
 
+# Discontinuous Galerkin Derivative
 def ReferenceElement(N):
     """Given the polynomial order N, initialize quantites of a reference-element
     in logical coordinate -1<=r<=1."""
@@ -111,7 +116,7 @@ def ReferenceElement(N):
     MinvS=Dr
 
     return r, Minv, MinvS
-    
+
 def derive_DG_elem(uk, ur, ul, MkinvSk, Mkinv, a, alpha):
 
     MkinvSkuk = np.dot(MkinvSk, uk)
@@ -123,32 +128,29 @@ def derive_DG_elem(uk, ur, ul, MkinvSk, Mkinv, a, alpha):
     return duk_dx
 
 
-def dudtDG(inarray, minx, maxx, nk, npe, a, alpha):
-    return -1 * dudxDG(inarray, minx, maxx, nk, npe, a, alpha, Minv_reftemp, MinvS_reftemp)
+def dudtDG(inarray, info):
+    return -1 * dudxDG(inarray, info)
 
-def dudxDG(inarray, minx, maxx, nk, npe, a, alpha, Minv_reftemp, MinvS_reftemp):
+def dudxDG(inarray, info):
 
-    #r , Minv_ref, MinvS_ref = ReferenceElement(npe - 1)
-    MkinvSk = MinvS_reftemp[:] * 2 / ((maxx - minx) / nk)
-    Mkinv = Minv_reftemp[:] * 2 / ((maxx - minx) / nk)
+    MkinvSk = info['MinvS_ref'][:] * 2 / ((info['maxx'] - info['minx']) / info['nk'])
+    Mkinv = info['Minv_ref'][:] * 2 / ((info['maxx'] - info['minx']) / info['nk'])
 
-    u_k = np.zeros((nk,npe))
-    for i in range(nk):
-        u_k[i,:] = inarray[i * npe:(i + 1) * npe]
+    u_k = np.zeros((info['nk'],info['npe']))
+    for i in range(info['nk']):
+        u_k[i,:] = inarray[i * info['npe']:(i + 1) * info['npe']]
 
-    MkinvSkuk = np.zeros((nk,npe))
+    MkinvSkuk = np.zeros((info['nk'],info['npe']))
     for i in range(len(u_k)):
         MkinvSkuk[i] = np.dot(MkinvSk, u_k[i])
-    dudx = np.zeros((nk, npe))
+    dudx = np.zeros((info['nk'], info['npe']))
 
-    dudx[0,:] = derive_DG_elem(u_k[0], u_k[-1, -1], u_k[1,0], MkinvSk, Mkinv, a, alpha)
+    dudx[0,:] = derive_DG_elem(u_k[0], u_k[-1, -1], u_k[1,0], MkinvSk, Mkinv, info['a'], info['alpha'])
+    for i in range(1, info['nk'] -1):
+        dudx[i,:] = derive_DG_elem(u_k[i], u_k[i-1, -1], u_k[i+1, 0], MkinvSk, Mkinv, info['a'], info['alpha'])
 
-    for i in range(1, nk-1):
-        dudx[i,:] = derive_DG_elem(u_k[i], u_k[i-1, -1], u_k[i+1, 0], MkinvSk, Mkinv, a, alpha)
+    dudx[-1, :] = derive_DG_elem(u_k[-1], u_k[-2,-1], u_k[0,0], MkinvSk, Mkinv, info['a'], info['alpha'])
 
-    dudx[-1, :] = derive_DG_elem(u_k[-1], u_k[-2,-1], u_k[0,0], MkinvSk, Mkinv, a, alpha)
-
-
-    dudxlist = [dudx[i,j] for i in range(nk) for j in range(npe)]
+    dudxlist = [dudx[i,j] for i in range(info['nk']) for j in range(info['npe'])]
     dudxarray = np.array(dudxlist)
     return dudxarray
