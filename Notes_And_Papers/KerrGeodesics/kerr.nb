@@ -1,0 +1,3460 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    147090,       3452]
+NotebookOptionsPosition[    143106,       3379]
+NotebookOutlinePosition[    143497,       3396]
+CellTagsIndexPosition[    143454,       3393]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"<<", "KerrGeodesics`"}]], "Input",
+ CellChangeTimes->{{3.768904471999838*^9, 3.768904476347705*^9}, {
+  3.769338066768498*^9, 3.769338067664249*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"351026bc-d5c3-4bfc-a153-9b741634ca40"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"$UserBaseDirectory", "<>", "$PathnameSeparator", "<>", 
+  "\"\<Applications\>\""}]], "Input",
+ CellChangeTimes->{{3.769337803377077*^9, 3.769337803379044*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"f7ce71cc-ac03-461d-ab06-583994187e86"],
+
+Cell[BoxData["\<\"/Users/hoppese/Library/Mathematica/Applications\"\>"], \
+"Output",
+ CellChangeTimes->{3.7693378046818237`*^9},
+ CellLabel->"Out[1]=",ExpressionUUID->"0ce550f6-2f5e-45a8-ad87-8b0bdb2aabfb"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Quit", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.769338091782587*^9, 
+  3.7693380928644238`*^9}},ExpressionUUID->"e3c23607-9d79-4060-96a7-\
+071994e63939"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "KerrGeoOrbit"}]], "Input",
+ CellChangeTimes->{{3.769255778300613*^9, 3.769255778495249*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"fb525c47-6d45-4a58-a5d5-02e740fcbc89"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox[
+           PaneBox[
+            TooltipBox[
+             ButtonBox[
+              PaneSelectorBox[{False->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIcon"]], True->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIconHot"]]}, Dynamic[
+                CurrentValue["MouseOver"]]],
+              Appearance->None,
+              BaseStyle->"Link",
+              ButtonData->"paclet:KerrGeodesics/ref/KerrGeoOrbit",
+              ButtonNote->"paclet:KerrGeodesics/ref/KerrGeoOrbit"],
+             "\"paclet:KerrGeodesics/ref/KerrGeoOrbit\""],
+            FrameMargins->{{0, 4}, {0, 2}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"KerrGeoOrbit[a,p,e,x] returns a \
+KerrGeoOrbitFunction[..] which stores the orbital trajectory and \
+parameters.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Documentation\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Documentation\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Documentation", "Tooltip"]& ], 
+                   
+                   TemplateBox[{
+                    TemplateBox[{
+                    "\"Local \[RightGuillemet]\"", 
+                    "paclet:KerrGeodesics/ref/KerrGeoOrbit", 
+                    "paclet:KerrGeodesics/ref/KerrGeoOrbit", "Link", {
+                    RGBColor[0.9686274509803922, 0.4666666666666667, 0.]}, 
+                    BaseStyle -> {
+                    RGBColor[0.0784313725490196, 0.1568627450980392, 0.6]}}, 
+                    "HyperlinkTemplate"]},
+                    "RowDefault"]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"KerrGeoOrbit", "[", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`a_", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`p_", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`e_", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`x_", ",", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`initPhases", ":", 
+                    RowBox[{"{", 
+                    RowBox[{"_", ",", "_", ",", "_", ",", "_"}], "}"}], ":", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0", ",", "0", ",", "0"}], "}"}]}], ",", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+                    RowBox[{"Module", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`param", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`method"}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`method", "=", 
+                    RowBox[{"OptionValue", "[", "\<\"Method\"\>", "]"}]}], 
+                    ";", 
+                    RowBox[{"KerrGeodesics`KerrGeoOrbit`Private`param", "=", 
+                    RowBox[{
+                    "OptionValue", "[", "\<\"Parametrization\"\>", "]"}]}], 
+                    ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`param", 
+                    "\[Equal]", "\<\"Darwin\"\>"}], "&&", 
+                    RowBox[{
+                    RowBox[{
+                    "Abs", "[", "KerrGeodesics`KerrGeoOrbit`Private`x", "]"}],
+                     "\[NotEqual]", "1"}]}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    "Print", 
+                    "[", "\<\"Darwin parameterization only valid for \
+equatorial motion\"\>", "]"}], ";", 
+                    RowBox[{"Return", "[", "]"}], ";"}]}], "]"}], ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Precision", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`a", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`p", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`e", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`x"}], "}"}], "]"}], 
+                    ">", "30"}], ",", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`method", 
+                    "=", "\<\"Analytic\"\>"}]}], "]"}], ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`method", 
+                    "\[Equal]", "\<\"FastSpec\"\>"}], ",", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`param", 
+                    "\[Equal]", "\<\"Mino\"\>"}], ",", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "PossibleZeroQ", "[", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`a", "]"}], ",", 
+                    RowBox[{"Return", "[", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`KerrGeoOrbitMino", 
+                    "[", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`a", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`p", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`e", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`x", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`initPhases"}], "]"}], 
+                    "]"}], ",", 
+                    RowBox[{"Return", "[", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`KerrGeoOrbitFastSpec",
+                     "[", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`a", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`p", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`e", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`x", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`initPhases"}], "]"}], 
+                    "]"}]}], "]"}]}], "]"}], ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`param", 
+                    "\[Equal]", "\<\"Darwin\"\>"}], ",", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "PossibleZeroQ", "[", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`a", "]"}], ",", 
+                    RowBox[{"Return", "[", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`\
+KerrGeoOrbitSchwarzDarwin", "[", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`p", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`e"}], "]"}], "]"}], 
+                    ",", 
+                    RowBox[{"Return", "[", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`\
+KerrGeoOrbitFastSpecDarwin", "[", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`a", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`p", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`e", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`x", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`initPhases"}], "]"}], 
+                    "]"}]}], "]"}]}], "]"}], ";", 
+                    RowBox[{"Print", "[", 
+                    RowBox[{"\<\"Unrecognized parametrization: \"\>", "<>", 
+                    RowBox[{
+                    "OptionValue", "[", "\<\"Parametrization\"\>", "]"}]}], 
+                    "]"}], ";"}]}], "]"}], ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`method", 
+                    "\[Equal]", "\<\"Analytic\"\>"}], ",", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`param", 
+                    "\[Equal]", "\<\"Mino\"\>"}], ",", 
+                    RowBox[{"Return", "[", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`KerrGeoOrbitMino", 
+                    "[", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`a", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`p", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`e", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`x", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`initPhases"}], "]"}], 
+                    "]"}]}], "]"}], ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`param", 
+                    "\[Equal]", "\<\"Darwin\"\>"}], ",", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "PossibleZeroQ", "[", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`a", "]"}], ",", 
+                    RowBox[{"Return", "[", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`\
+KerrGeoOrbitSchwarzDarwin", "[", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`p", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`e"}], "]"}], "]"}], 
+                    ",", 
+                    RowBox[{"Return", "[", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`KerrGeoOrbitDarwin", 
+                    "[", 
+                    RowBox[{
+                    "KerrGeodesics`KerrGeoOrbit`Private`a", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`p", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`e", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`x", ",", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`initPhases"}], "]"}], 
+                    "]"}]}], "]"}]}], "]"}], ";", 
+                    RowBox[{"Print", "[", 
+                    RowBox[{"\<\"Unrecognized parametrization: \"\>", "<>", 
+                    RowBox[{
+                    "OptionValue", "[", "\<\"Parametrization\"\>", "]"}]}], 
+                    "]"}], ";"}]}], "]"}], ";", 
+                    RowBox[{"Print", "[", 
+                    
+                    RowBox[{"\<\"Unrecognized method: \"\>", "<>", 
+                    "KerrGeodesics`KerrGeoOrbit`Private`method"}], "]"}], 
+                    ";"}]}], "]"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    
+                    StyleBox["\<\" Default Definitions\"\>", 
+                    "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"DefaultValues\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "DefaultValues", "Tooltip"]& ], 
+                   InterpretationBox[GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"SyntaxInformation", "[", "KerrGeoOrbit", "]"}], 
+                    "=", 
+                    RowBox[{"{", 
+                    RowBox[{"\<\"ArgumentsPattern\"\>", "\[Rule]", 
+                    RowBox[{"{", 
+                    RowBox[{"_", ",", "_", ",", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}], "}"}]}], "}"}]}]}
+                    },
+                    BaselinePosition->{Baseline, {1, 1}},
+                    
+                    GridBoxAlignment->{
+                    "Columns" -> {{Left}}, "Rows" -> {{Baseline}}}],
+                    
+                    ColumnForm[{
+                    SyntaxInformation[
+                    KerrGeodesics`KerrGeoOrbit`KerrGeoOrbit] = {
+                    "ArgumentsPattern" -> {
+                    Blank[], 
+                    Blank[], 
+                    OptionsPattern[]}}}],
+                    Editable->False]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Options\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Options\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Options", "Tooltip"]& ], 
+                   RowBox[{"{", 
+                    RowBox[{
+                    
+                    RowBox[{"\<\"Parametrization\"\>", 
+                    "\[Rule]", "\<\"Mino\"\>"}], ",", 
+                    
+                    RowBox[{"\<\"Method\"\>", 
+                    "\[Rule]", "\<\"FastSpec\"\>"}]}], "}"}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], \
+"\<\"KerrGeodesics`KerrGeoOrbit`KerrGeoOrbit\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox[
+           PaneBox[
+            TooltipBox[
+             ButtonBox[
+              PaneSelectorBox[{False->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIcon"],
+                ImageSizeCache->{13., {4., 9.}}], True->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIconHot"],
+                ImageSizeCache->{13., {4., 9.}}]}, Dynamic[
+                CurrentValue["MouseOver"]]],
+              Appearance->None,
+              BaseStyle->"Link",
+              ButtonData->"paclet:KerrGeodesics/ref/KerrGeoOrbit",
+              ButtonNote->"paclet:KerrGeodesics/ref/KerrGeoOrbit"],
+             "\"paclet:KerrGeodesics/ref/KerrGeoOrbit\""],
+            FrameMargins->{{0, 4}, {0, 2}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"KerrGeoOrbit[a,p,e,x] returns a \
+KerrGeoOrbitFunction[..] which stores the orbital trajectory and \
+parameters.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{10., {2., 8.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{10., {2., 8.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "KerrGeoOrbit[a,p,e,x] returns a KerrGeoOrbitFunction[..] which stores \
+the orbital trajectory and parameters.", "Documentation" -> 
+    Association["Local" -> "paclet:KerrGeodesics/ref/KerrGeoOrbit"], 
+    "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, KerrGeodesics`KerrGeoOrbit`KerrGeoOrbit, {
+      KerrGeodesics`KerrGeoOrbit`KerrGeoOrbit[
+         Pattern[KerrGeodesics`KerrGeoOrbit`Private`a, 
+          Blank[]], 
+         Pattern[KerrGeodesics`KerrGeoOrbit`Private`p, 
+          Blank[]], 
+         Pattern[KerrGeodesics`KerrGeoOrbit`Private`e, 
+          Blank[]], 
+         Pattern[KerrGeodesics`KerrGeoOrbit`Private`x, 
+          Blank[]], 
+         Optional[
+          Pattern[KerrGeodesics`KerrGeoOrbit`Private`initPhases, {
+            Blank[], 
+            Blank[], 
+            Blank[], 
+            Blank[]}], {0, 0, 0, 0}], 
+         OptionsPattern[]] :> 
+       Module[{KerrGeodesics`KerrGeoOrbit`Private`param, 
+          KerrGeodesics`KerrGeoOrbit`Private`method}, 
+         KerrGeodesics`KerrGeoOrbit`Private`method = OptionValue["Method"]; 
+         KerrGeodesics`KerrGeoOrbit`Private`param = 
+          OptionValue["Parametrization"]; If[
+           And[
+           KerrGeodesics`KerrGeoOrbit`Private`param == "Darwin", 
+            Abs[KerrGeodesics`KerrGeoOrbit`Private`x] != 1], 
+           Print["Darwin parameterization only valid for equatorial motion"]; 
+           Return[]; Null]; 
+         If[Precision[{
+             KerrGeodesics`KerrGeoOrbit`Private`a, 
+              KerrGeodesics`KerrGeoOrbit`Private`p, 
+              KerrGeodesics`KerrGeoOrbit`Private`e, 
+              KerrGeodesics`KerrGeoOrbit`Private`x}] > 30, 
+           KerrGeodesics`KerrGeoOrbit`Private`method = "Analytic"]; 
+         If[KerrGeodesics`KerrGeoOrbit`Private`method == "FastSpec", 
+           If[KerrGeodesics`KerrGeoOrbit`Private`param == "Mino", 
+             If[
+              PossibleZeroQ[KerrGeodesics`KerrGeoOrbit`Private`a], 
+              Return[
+               KerrGeodesics`KerrGeoOrbit`Private`KerrGeoOrbitMino[
+               KerrGeodesics`KerrGeoOrbit`Private`a, 
+                KerrGeodesics`KerrGeoOrbit`Private`p, 
+                KerrGeodesics`KerrGeoOrbit`Private`e, 
+                KerrGeodesics`KerrGeoOrbit`Private`x, 
+                KerrGeodesics`KerrGeoOrbit`Private`initPhases]], 
+              Return[
+               KerrGeodesics`KerrGeoOrbit`Private`KerrGeoOrbitFastSpec[
+               KerrGeodesics`KerrGeoOrbit`Private`a, 
+                KerrGeodesics`KerrGeoOrbit`Private`p, 
+                KerrGeodesics`KerrGeoOrbit`Private`e, 
+                KerrGeodesics`KerrGeoOrbit`Private`x, 
+                KerrGeodesics`KerrGeoOrbit`Private`initPhases]]]]; 
+           If[KerrGeodesics`KerrGeoOrbit`Private`param == "Darwin", 
+             If[
+              PossibleZeroQ[KerrGeodesics`KerrGeoOrbit`Private`a], 
+              Return[
+               KerrGeodesics`KerrGeoOrbit`Private`KerrGeoOrbitSchwarzDarwin[
+               KerrGeodesics`KerrGeoOrbit`Private`p, 
+                KerrGeodesics`KerrGeoOrbit`Private`e]], 
+              Return[
+               KerrGeodesics`KerrGeoOrbit`Private`KerrGeoOrbitFastSpecDarwin[
+               KerrGeodesics`KerrGeoOrbit`Private`a, 
+                KerrGeodesics`KerrGeoOrbit`Private`p, 
+                KerrGeodesics`KerrGeoOrbit`Private`e, 
+                KerrGeodesics`KerrGeoOrbit`Private`x, 
+                KerrGeodesics`KerrGeoOrbit`Private`initPhases]]]]; Print[
+             StringJoin["Unrecognized parametrization: ", 
+              OptionValue["Parametrization"]]]; Null]; 
+         If[KerrGeodesics`KerrGeoOrbit`Private`method == "Analytic", 
+           If[KerrGeodesics`KerrGeoOrbit`Private`param == "Mino", 
+             Return[
+              KerrGeodesics`KerrGeoOrbit`Private`KerrGeoOrbitMino[
+              KerrGeodesics`KerrGeoOrbit`Private`a, 
+               KerrGeodesics`KerrGeoOrbit`Private`p, 
+               KerrGeodesics`KerrGeoOrbit`Private`e, 
+               KerrGeodesics`KerrGeoOrbit`Private`x, 
+               KerrGeodesics`KerrGeoOrbit`Private`initPhases]]]; 
+           If[KerrGeodesics`KerrGeoOrbit`Private`param == "Darwin", 
+             If[
+              PossibleZeroQ[KerrGeodesics`KerrGeoOrbit`Private`a], 
+              Return[
+               KerrGeodesics`KerrGeoOrbit`Private`KerrGeoOrbitSchwarzDarwin[
+               KerrGeodesics`KerrGeoOrbit`Private`p, 
+                KerrGeodesics`KerrGeoOrbit`Private`e]], 
+              Return[
+               KerrGeodesics`KerrGeoOrbit`Private`KerrGeoOrbitDarwin[
+               KerrGeodesics`KerrGeoOrbit`Private`a, 
+                KerrGeodesics`KerrGeoOrbit`Private`p, 
+                KerrGeodesics`KerrGeoOrbit`Private`e, 
+                KerrGeodesics`KerrGeoOrbit`Private`x, 
+                KerrGeodesics`KerrGeoOrbit`Private`initPhases]]]]; Print[
+             StringJoin["Unrecognized parametrization: ", 
+              OptionValue["Parametrization"]]]; Null]; Print[
+           StringJoin[
+           "Unrecognized method: ", 
+            KerrGeodesics`KerrGeoOrbit`Private`method]]; Null]}], "SubValues" -> 
+    None, "DefaultValues" -> 
+    Information`InformationValueForm[
+     DefaultValues, KerrGeodesics`KerrGeoOrbit`KerrGeoOrbit, {
+      SyntaxInformation[KerrGeodesics`KerrGeoOrbit`KerrGeoOrbit] -> {
+        "ArgumentsPattern" -> {
+           Blank[], 
+           Blank[], 
+           OptionsPattern[]}}}], "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> {"Parametrization" -> "Mino", "Method" -> "FastSpec"}, 
+    "Attributes" -> {}, "FullName" -> 
+    "KerrGeodesics`KerrGeoOrbit`KerrGeoOrbit"], False]]], "Output",
+ CellChangeTimes->{3.769255778827858*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"ce467259-c6c4-4cee-9484-d29b4e6d48dd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"aN", ",", "pN", ",", "eN", ",", "thMinN"}], "}"}], "=", 
+  RowBox[{"{", 
+   RowBox[{"0.1`25", ",", "10", ",", "0.7`25", ",", "0.5`25"}], 
+   "}"}]}]], "Input",
+ CellChangeTimes->{{3.7692558608221493`*^9, 3.769255896530532*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"58f43b8c-ebac-42b7-91f8-48ec89a85673"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.1`25.", ",", "10", ",", "0.7`25.", ",", "0.5`25."}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.769255897660019*^9},
+ CellLabel->"Out[13]=",ExpressionUUID->"dab4b48d-c81b-4be0-a299-f9a815c93145"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"lambdaR", "=", 
+  RowBox[{"2", 
+   RowBox[{"\[Pi]", "/", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"KerrGeoFrequencies", "[", 
+       RowBox[{"aN", ",", "pN", ",", "eN", ",", 
+        RowBox[{"Cos", "[", 
+         RowBox[{
+          RowBox[{"\[Pi]", "/", "2"}], "+", "thMinN"}], "]"}], ",", 
+        RowBox[{"Time", "\[Rule]", "\"\<Mino\>\""}]}], "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}], ")"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"lambdaTh", "=", 
+  RowBox[{"2", 
+   RowBox[{"\[Pi]", "/", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"KerrGeoFrequencies", "[", 
+       RowBox[{"aN", ",", "pN", ",", "eN", ",", 
+        RowBox[{"Cos", "[", 
+         RowBox[{
+          RowBox[{"\[Pi]", "/", "2"}], "+", "thMinN"}], "]"}], ",", 
+        RowBox[{"Time", "\[Rule]", "\"\<Mino\>\""}]}], "]"}], "[", 
+      RowBox[{"[", "3", "]"}], "]"}], ")"}]}]}]}]}], "Input",
+ CellChangeTimes->{{3.769255987651472*^9, 3.769256043363303*^9}},
+ CellLabel->"In[21]:=",ExpressionUUID->"05810975-ce30-4fd0-8521-243e0d5595ac"],
+
+Cell[BoxData["2.63584410551633823246456935249581672422`20.315584610021187"], \
+"Output",
+ CellChangeTimes->{{3.769255988797587*^9, 3.769256043692197*^9}},
+ CellLabel->"Out[21]=",ExpressionUUID->"c152fd0b-e05f-4b4a-9b75-370421d6ff5e"],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  "1.604702124080337748961169295809855105`17.078689502421092"}]], "Output",
+ CellChangeTimes->{{3.769255988797587*^9, 3.7692560438274393`*^9}},
+ CellLabel->"Out[22]=",ExpressionUUID->"449dbca7-d199-436a-aec9-b8726d87e916"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"orbit", "=", 
+   RowBox[{"KerrGeoOrbit", "[", 
+    RowBox[{"aN", ",", "pN", ",", "eN", ",", 
+     RowBox[{"Cos", "[", 
+      RowBox[{
+       RowBox[{"\[Pi]", "/", "2"}], "+", "thMinN"}], "]"}]}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"t", ",", "r", ",", "\[Theta]", ",", "\[CurlyPhi]"}], "}"}], "=", 
+   
+   RowBox[{"orbit", "[", "\"\<Trajectory\>\"", "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{
+  3.7692557894117517`*^9, {3.769255882513151*^9, 3.7692558874519243`*^9}},
+ CellLabel->"In[14]:=",
+ CellID->1454388234,
+ $CellContext`ExpressionUUID -> 
+ "8af649fb-e9b7-498b-9589-053829d0b2e6",ExpressionUUID->"ea857f45-90db-4f16-\
+9f55-018c645b8de8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"tNs", "=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"laN", ",", 
+      RowBox[{"t", "[", "laN", "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"laN", ",", "0", ",", "lambdaR", ",", 
+      RowBox[{"lambdaR", "/", "50"}]}], "}"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"rNs", "=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"laN", ",", 
+      RowBox[{"r", "[", "laN", "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"laN", ",", "0", ",", "lambdaR", ",", 
+      RowBox[{"lambdaR", "/", "50"}]}], "}"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"thNs", "=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"laN", ",", 
+      RowBox[{"\[Theta]", "[", "laN", "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"laN", ",", "0", ",", "lambdaTh", ",", 
+      RowBox[{"lambdaTh", "/", "50"}]}], "}"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"phNs", "=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"laN", ",", 
+      RowBox[{"\[CurlyPhi]", "[", "laN", "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"laN", ",", "0", ",", "lambdaR", ",", 
+      RowBox[{"lambdaR", "/", "50"}]}], "}"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.7692557923292027`*^9, 3.769255814265943*^9}, {
+  3.769255949693858*^9, 3.769255952198031*^9}, {3.769256053092354*^9, 
+  3.7692561369662647`*^9}, {3.76925617207747*^9, 3.769256232038859*^9}, {
+  3.769256335252696*^9, 3.769256339324548*^9}},
+ CellLabel->"In[43]:=",ExpressionUUID->"67d36d63-eb3d-451d-8270-415c52b30bd3"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.05271688211032676464929138704991633449`20.315584610021187", ",", 
+     "2.70655232800863931668815952918986392085`16.233750297846743"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.10543376422065352929858277409983266897`20.315584610021187", ",", 
+     "5.43053493955235754416874883934718729357`16.47052474109156"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.15815064633098029394787416114974900346`20.315584610021183", ",", 
+     "8.19011021015270929862351657780513891331`16.606332835203514"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.21086752844130705859716554819966533794`20.315584610021187", ",", 
+     "11.00495852433629204871703585523118490499`16.684252485327374"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.26358441055163382324645693524958167243`20.315584610021183", ",", 
+     "13.89717862633055930514092327702874510202`16.75772875260713"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.31630129266196058789574832229949800691`20.315584610021183", ",", 
+     "16.89237767154455484859603532428057963018`16.793643459135502"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.3690181747722873525450397093494143414`20.315584610021183", ",", 
+     "20.02105119541044020456013728538377616114`16.83586282227838"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.42173505688261411719433109639933067589`20.315584610021183", ",", 
+     "23.32039271157414935964947720456666502337`16.867992076228955"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.47445193899294088184362248344924701037`20.315584610021183", ",", 
+     "26.83673367636439230059586449971371512789`16.901091023012878"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.52716882110326764649291387049916334486`20.315584610021183", ",", 
+     "30.62890822950283265302799674582698259991`16.934727092023024"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.57988570321359441114220525754907967934`20.315584610021187", ",", 
+     "34.77298075576405220198952754717534933958`16.95942279749799"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.63260258532392117579149664459899601383`20.315584610021183", ",", 
+     "39.36899406621546544373092879411326310409`16.98847856218397"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.68531946743424794044078803164891234831`20.315584610021183", ",", 
+     "44.55072918093554847458451480514174698491`17.0187937307259"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.7380363495445747050900794186988286828`20.315584610021183", ",", 
+     "50.49996096418448421953763088018532810153`17.05105712143688"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.79075323165490146973937080574874501729`20.315584610021183", ",", 
+     "57.46738510320310080637909878190649504015`17.089154367661287"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.84347011376522823438866219279866135177`20.315584610021183", ",", 
+     "65.80324047688116905609547311741987432332`17.124560272709253"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.89618699587555499903795357984857768626`20.31558461002118", ",", 
+     "76.00132217290787482573896825715648225866`17.16655979323232"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.94890387798588176368724496689849402074`20.315584610021183", ",", 
+     "88.75936053969355206209425941189878924404`17.216784474671027"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.00162076009620852833653635394841035523`20.315584610021183", ",", 
+     "105.05315560649181777668147825086969769525`17.270852815555376"}], "}"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.05433764220653529298582774099832668971`20.315584610021183", ",", 
+     "126.20313924883076421733123097451869781322`17.338157594918215"}], "}"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.1070545243168620576351191280482430242`20.315584610021187", ",", 
+     "153.86546210557337374012319084167146846524`17.4023611226739"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.15977140642718882228441051509815935869`20.315584610021183", ",", 
+     "189.7958838165459335687564131818226374933`17.47913322921413"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.21248828853751558693370190214807569317`20.31558461002118", ",", 
+     "235.16900779171386183947694134378473874365`17.553972868190804"}], "}"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.26520517064784235158299328919799202766`20.315584610021173", ",", 
+     "289.41546984776276025196442189239073490581`17.63061490663994"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.31792205275816911623228467624790836214`20.31558461002118", ",", 
+     "349.22989041519584823411785329425072914654`17.790747371960613"}], "}"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.37063893486849588088157606329782469663`20.315584610021183", ",", 
+     "409.0443780808492270533749503201243654958`17.752829462599294"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.42335581697882264553086745034774103111`20.315584610021183", ",", 
+     "463.29102999337495759626982731619976991504`17.792608353388218"}], "}"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.4760726990891494101801588373976573656`20.315584610021183", ",", 
+     "508.66443421868063902238346860624261787021`17.823009445303523"}], "}"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.52878958119947617482945022444757370009`20.315584610021183", ",", 
+     "544.59517879982608249099733274649562346739`17.83912078938837"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.58150646330980293947874161149749003457`20.315584610021187", ",", 
+     "572.25781210819714184177208870639017691377`17.852522443767633"}], "}"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.63422334542012970412803299854740636906`20.31558461002119", ",", 
+     "593.4080408623813840884472784350616246752`17.853215375246428"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.68694022753045646877732438559732270354`20.31558461002119", ",", 
+     "609.70197391844342009749334864971998671547`17.85432483272195"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.73965710964078323342661577264723903803`20.31558461002119", ",", 
+     "622.46001962978566403875804078402732921768`17.85121862199249"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.79237399175110999807590715969715537251`20.31558461002119", ",", 
+     "632.65797677368543526964105960146832141665`17.84810783127805"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.845090873861436762725198546747071707`20.31558461002119", ",", 
+     "640.99359693013105338254709278273435190155`17.844786983615712"}], "}"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.89780775597176352737448993379698804149`20.31558461002119", ",", 
+     "647.96071528290841605728109386340482257774`17.83757240269077"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.95052463808209029202378132084690437597`20.31558461002119", ",", 
+     "653.90962283681881783113071788207000041075`17.83170281524665"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.00324152019241705667307270789682071046`20.315584610021194", ",", 
+     "659.09107054932997087680087974626632183622`17.82516776385453"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.05595840230274382132236409494673704494`20.315584610021194", ",", 
+     "663.6868822774907130914583807554973304923`17.81805421954418"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.10867528441307058597165548199665337943`20.3155846100212", ",", 
+     "667.83087340484299503215573477847983520293`17.81248718136423"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.16139216652339735062094686904656971392`20.3155846100212", ",", 
+     "671.62310061846350591070677256247993695513`17.80407470095292"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.2141090486337241152702382560964860484`20.3155846100212", ",", 
+     "675.13961932613200154030137903209030091054`17.796513831064214"}], "}"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.26682593074405087991952964314640238289`20.3155846100212", ",", 
+     "678.43923336795046985726135698629088780023`17.79038677895978"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.31954281285437764456882103019631871737`20.3155846100212", ",", 
+     "681.56822774336516284758155109877646954405`17.782965898510838"}], "}"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.37225969496470440921811241724623505186`20.31558461002119", ",", 
+     "684.56374127150610511563610319810814400371`17.778434290726164"}], "}"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.42497657707503117386740380429615138634`20.315584610021187", ",", 
+     "687.45621587932794271620644415834143511492`17.768944142200173"}], "}"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.47769345918535793851669519134606772083`20.31558461002119", ",", 
+     "690.27121533807624412054076714716859716217`17.76290019695936"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.53041034129568470316598657839598405532`20.315584610021183", ",", 
+     "693.03081262734544871054726786345841783159`17.754443168457918"}], "}"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.5831272234060114678152779654459003898`20.315584610021183", ",", 
+     "695.75468437829021403065813073748838117111`17.74827869022297"}], 
+    "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.769256339773409*^9},
+ CellLabel->"Out[43]=",ExpressionUUID->"54dff75c-a5de-4866-86e8-be1aa8beacfa"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+    "0", ",", "5.88235294117647058823529411764705882354`25.385350881364015"}],
+     "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.05271688211032676464929138704991633449`20.315584610021187", ",", 
+     "5.89509432318500101229823265174872761672`19.84453044934647"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.10543376422065352929858277409983266897`20.315584610021187", ",", 
+     "5.93367487034748946880154109170061378454`19.607961756969"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.15815064633098029394787416114974900346`20.315584610021183", ",", 
+     "5.99918119925277279536932653480388609837`19.365323709547546"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.21086752844130705859716554819966533794`20.315584610021187", ",", 
+     "6.09348371235977632524874282646752519923`19.275535953462146"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.26358441055163382324645693524958167243`20.315584610021183", ",", 
+     "6.21933043824712756922955336689582341807`19.15701928605188"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.31630129266196058789574832229949800691`20.315584610021183", ",", 
+     "6.38048840067831500500931556390419568892`19.07180910816647"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.3690181747722873525450397093494143414`20.315584610021183", ",", 
+     "6.58194354084602489724555882048903250739`19.003869630006793"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.42173505688261411719433109639933067589`20.315584610021183", ",", 
+     "6.830174850824961966906450848181356512`18.9231546536893"}], "}"}], ",", 
+   
+   RowBox[{"{", 
+    RowBox[{
+    "0.47445193899294088184362248344924701037`20.315584610021183", ",", 
+     "7.1335240592725179817981184832539934547`18.88716211996101"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.52716882110326764649291387049916334486`20.315584610021183", ",", 
+     "7.50268887801419784374088081274172074037`18.81823011978886"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.57988570321359441114220525754907967934`20.315584610021187", ",", 
+     "7.95137472159740349078215783212787207608`18.769470605984022"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.63260258532392117579149664459899601383`20.315584610021183", ",", 
+     "8.49714449838153746674905120435210385588`18.71308698361473"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.68531946743424794044078803164891234831`20.315584610021183", ",", 
+     "9.16250208961184752923090098838780295202`18.668155591649683"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.7380363495445747050900794186988286828`20.315584610021183", ",", 
+     "9.97621701378441736189596584960405832709`18.634330813427997"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.79075323165490146973937080574874501729`20.315584610021183", ",", 
+     "10.97481043198126357366642891207295741246`18.59243158692056"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.84347011376522823438866219279866135177`20.315584610021183", ",", 
+     "12.2039002240132018070633507283504203927`18.569610296875222"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.89618699587555499903795357984857768626`20.31558461002118", ",", 
+     "13.71859103266759441079170648621445770458`18.514315232617722"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.94890387798588176368724496689849402074`20.315584610021183", ",", 
+     "15.58101153929653593813211103275439037617`18.50207440289245"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.00162076009620852833653635394841035523`20.315584610021183", ",", 
+     "17.85104094335289597438913869450954779593`18.478302222470376"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.05433764220653529298582774099832668971`20.315584610021183", ",", 
+     "20.56306132383619048773468760429843580242`18.473383827098814"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.1070545243168620576351191280482430242`20.315584610021187", ",", 
+     "23.67887605385148671051847294023972074006`18.50510450808451"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.15977140642718882228441051509815935869`20.315584610021183", ",", 
+     "27.01231684556117842526807551130411363622`18.520730529346096"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.21248828853751558693370190214807569317`20.31558461002118", ",", 
+     "30.15162446769465003864247696499214849799`18.69483296217276"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.26520517064784235158299328919799202766`20.315584610021173", ",", 
+     "32.46921492520716447391289577752821911863`18.89463774651715"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.31792205275816911623228467624790836214`20.31558461002118", ",", 
+     "33.33333333333333333333333333333333333359`24.6320232147054"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.37063893486849588088157606329782469663`20.315584610021183", ",", 
+     "32.46921492520716447391289577752821911645`18.89124424402494"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.42335581697882264553086745034774103111`20.315584610021183", ",", 
+     "30.15162446769465003864247696499214849479`18.68705419379511"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.4760726990891494101801588373976573656`20.315584610021183", ",", 
+     "27.01231684556117842526807551130411363213`18.510559112868343"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.52878958119947617482945022444757370009`20.315584610021183", ",", 
+     "23.67887605385148671051847294023972073612`18.49049569844632"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.58150646330980293947874161149749003457`20.315584610021187", ",", 
+     "20.56306132383619048773468760429843579896`18.455936995009477"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.63422334542012970412803299854740636906`20.31558461002119", ",", 
+     "17.85104094335289597438913869450954779294`18.457648548310047"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.68694022753045646877732438559732270354`20.31558461002119", ",", 
+     "15.58101153929653593813211103275439037367`18.477990391884564"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.73965710964078323342661577264723903803`20.31558461002119", ",", 
+     "13.71859103266759441079170648621445770255`18.488045155110925"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.79237399175110999807590715969715537251`20.31558461002119", ",", 
+     "12.20390022401320180706335072835042039103`18.53901952235331"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.845090873861436762725198546747071707`20.31558461002119", ",", 
+     "10.97481043198126357366642891207295741117`18.560063673104064"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.89780775597176352737448993379698804149`20.31558461002119", ",", 
+     "9.97621701378441736189596584960405832597`18.599266330816818"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.95052463808209029202378132084690437597`20.31558461002119", ",", 
+     "9.16250208961184752923090098838780295114`18.631427944850554"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.00324152019241705667307270789682071046`20.315584610021194", ",", 
+     "8.4971444983815374667490512043521038552`18.673294581917187"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.05595840230274382132236409494673704494`20.315584610021194", ",", 
+     "7.95137472159740349078215783212787207549`18.724828047006394"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.10867528441307058597165548199665337943`20.3155846100212", ",", 
+     "7.50268887801419784374088081274172073984`18.769650124878744"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.16139216652339735062094686904656971392`20.3155846100212", ",", 
+     "7.13352405927251798179811848325399345432`18.832729858063903"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.2141090486337241152702382560964860484`20.3155846100212", ",", 
+     "6.83017485082496196690645084818135651171`18.867270779017705"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.26682593074405087991952964314640238289`20.3155846100212", ",", 
+     "6.58194354084602489724555882048903250712`18.94185000676574"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.31954281285437764456882103019631871737`20.3155846100212", ",", 
+     "6.38048840067831500500931556390419568871`19.006294180623755"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.37225969496470440921811241724623505186`20.31558461002119", ",", 
+     "6.21933043824712756922955336689582341789`19.087090662943908"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.42497657707503117386740380429615138634`20.315584610021187", ",", 
+     "6.09348371235977632524874282646752519911`19.198646741792537"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.47769345918535793851669519134606772083`20.31558461002119", ",", 
+     "5.99918119925277279536932653480388609828`19.29055260542697"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.53041034129568470316598657839598405532`20.315584610021183", ",", 
+     "5.93367487034748946880154109170061378448`19.51819007055018"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.5831272234060114678152779654459003898`20.315584610021183", ",", 
+     "5.89509432318500101229823265174872761669`19.762846923116395"}], "}"}]}],
+   "}"}]], "Output",
+ CellChangeTimes->{3.769256339805931*^9},
+ CellLabel->"Out[44]=",ExpressionUUID->"f176ad41-092d-417f-a674-a09c66e2cfb3"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+    "0", ",", "0.50000000000000000000000000000000000058`16.30023248818709"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.0320940424816067549792233859161971021`17.078689502421092"}], ",",
+      "0.51445620536338257867365399335582079021`16.323116405012815"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.0641880849632135099584467718323942042`17.078689502421092"}], ",",
+      "0.55555774628006666292078280379809280688`16.384367956591444"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.0962821274448202649376701577485913063`17.078689502421092"}], ",",
+      "0.61797083657244786487235717115485085911`16.46799720901105"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.1283761699264270199168935436647884084`17.078689502421092"}], ",",
+      "0.69592428000256753833061609600212038153`16.559424466280383"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.1604702124080337748961169295809855105`17.078689502421092"}], ",",
+      "0.78472152624406006047008770765975958483`16.649415310779773"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.1925642548896405298753403154971826126`17.078689502421092"}], ",",
+      "0.88099394648363760449858493461818702836`16.733743360101737"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.2246582973712472848545637014133797147`17.07868950242109"}], ",", 
+     "0.98243344550689861264974577068431215439`16.81093535898012"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.2567523398528540398337870873295768168`17.078689502421092"}], ",",
+      "1.08746328074671038004795171195368766151`16.881178021684274"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.2888463823344607948130104732457739189`17.07868950242109"}], ",", 
+     "1.19498372484518929661645509462306429218`16.94514918668973"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.320940424816067549792233859161971021`17.07868950242109"}], ",", 
+     "1.30419934111849093365825948166040099552`17.004175063699673"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.3530344672976743047714572450781681231`17.07868950242109"}], ",", 
+     "1.41450527607568301210833811691983536837`17.059767363835384"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.3851285097792810597506806309943652252`17.07868950242109"}], ",", 
+     "1.52541095396285326161366884601018239683`17.113478311818685"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.4172225522608878147299040169105623273`17.07868950242109"}], ",", 
+     "1.63648561741870709089376820776461671818`17.101664318372464"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.4493165947424945697091274028267594294`17.07868950242109"}], ",", 
+     "1.74731495464005512841341583480489550025`17.055717396165928"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.4814106372241013246883507887429565315`17.07868950242109"}], ",", 
+     "1.85746071908186088147656223917256126888`17.01918900413749"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.5135046797057080796675741746591536336`17.07868950242109"}], ",", 
+     "1.96641598534305130158474721285850079027`16.989007937993517"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.5455987221873148346467975605753507357`17.07868950242109"}], ",", 
+     "2.07354761145692479578052432703382677996`16.963241650808662"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.5776927646689215896260209464915478378`17.07868950242109"}], ",", 
+     "2.17801443110123393001365874380066496878`16.940876486695974"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.6097868071505283446052443324077449399`17.078689502421092"}], ",",
+      "2.27864453635346159163202862897452665568`16.92165512196049"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.641880849632135099584467718323942042`17.078689502421092"}], ",", 
+     "2.37374910859924331544382694335592136757`16.90606430584001"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.6739748921137418545636911042401391441`17.078689502421092"}], ",",
+      "2.46085200930644267245317523888021314936`16.8958830715207"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.7060689345953486095429144901563362462`17.078689502421092"}], ",",
+      "2.53635510973870672797574793901753347959`16.895006611438248"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.7381629770769553645221378760725333483`17.078689502421092"}], ",",
+      "2.5953192523867488817799647507227601049`16.91082669533053"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.7702570195585621195013612619887304504`17.078689502421092"}], ",",
+      "2.63189396244338812494440175634750614783`16.95505096678101"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.8023510620401688744805846479049275525`17.078689502421092"}], ",",
+      "2.64110253442552393468308584736531977345`17.004566393023886"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.8344451045217756294598080338211246546`17.078689502421092"}], ",",
+      "2.62147940339068572700511716379051708508`16.925380384909904"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.8665391470033823844390314197373217567`17.07868950242109"}], ",", 
+     "2.57603743260377403432833716476808250873`16.875562341356545"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.8986331894849891394182548056535188588`17.07868950242109"}], ",", 
+     "2.51037232444984498114615461284720070062`16.843743614744504"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.9307272319665958943974781915697159609`17.07868950242109"}], ",", 
+     "2.43012591920177693181834362055755254439`16.821230245296853"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.962821274448202649376701577485913063`17.07868950242109"}], ",", 
+     "2.33974608055865961819540526495544050534`16.802623899717744"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "0.9949153169298094043559249634021101651`17.07868950242109"}], ",", 
+     "2.24238205870183872049067372688173669204`16.785162040054246"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.0270093594114161593351483493183072672`17.078689502421092"}], ",",
+      "2.14018520035497024270344649849879633218`16.76740249141959"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.0591034018930229143143717352345043693`17.078689502421092"}], ",",
+      "2.03462866195378585484967617119461401018`16.748775178746854"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.0911974443746296692935951211507014714`17.07868950242109"}], ",", 
+     "1.9267456961014040019845899763848412318`16.728957384252272"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.1232914868562364242728185070668985735`17.07868950242109"}], ",", 
+     "1.81728975241290193659403410950510310192`16.708020780420874"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.1553855293378431792520418929830956756`17.07868950242109"}], ",", 
+     "1.70683990588572339754342516322918075868`16.686091789020914"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.1874795718194499342312652788992927777`17.07868950242109"}], ",", 
+     "1.59587217523771202883727396944579174359`16.66336416253653"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.2195736143010566892104886648154898798`17.07868950242109"}], ",", 
+     "1.48481125765055722723834900937701968651`16.610853860106623"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.2516676567826634441897120507316869819`17.078689502421092"}], ",",
+      "1.37407279581665870044204567147290886651`16.550515865978245"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.283761699264270199168935436647884084`17.078689502421092"}], ",", 
+     "1.26410399943217437846921781097280405262`16.490366108689447"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.3158557417458769541481588225640811861`17.07868950242109"}], ",", 
+     "1.15543003716167949707046133522381154347`16.4299177554162"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.3479497842274837091273822084802782882`17.07868950242109"}], ",", 
+     "1.04871503036240838743173048047965432646`16.3689190072695"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.3800438267090904641066055943964753903`17.07868950242109"}], ",", 
+     "0.9448499156000622442053741006260995647`16.307659523002876"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.4121378691906972190858289803126724924`17.078689502421085"}], ",",
+      "0.84508493887841431966276346687140687309`16.24719682102503"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.4442319116723039740650523662288695945`17.07868950242108"}], ",", 
+     "0.75123005050605416181140662289009998718`16.190060663692815"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.4763259541539107290442757521450666966`17.078689502421085"}], ",",
+      "0.66594101952590333808983597908681585156`16.14153353969335"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.5084199966355174840234991380612637987`17.07868950242109"}], ",", 
+     "0.59305421775777112019864880273694518402`16.111957836548296"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.5405140391171242390027225239774609008`17.07868950242109"}], ",", 
+     "0.53773948589331544258690176153462059249`16.119967685559953"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.5726080815987309939819459098936580029`17.07868950242109"}], ",", 
+     "0.50586626682746623246742799289166629559`16.19589850264632"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "-", "1.604702124080337748961169295809855105`17.07868950242109"}], ",", 
+     "0.50195758723482708614596562385824456151`16.23248814107688"}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.769256339826984*^9},
+ CellLabel->"Out[45]=",ExpressionUUID->"efcae5ec-7230-4036-9f8f-6b0b6781c974"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.05271688211032676464929138704991633449`20.315584610021187", ",", 
+     RowBox[{
+     "-", "0.41187386124373640884104169370395918909`15.69483127664103"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.10543376422065352929858277409983266897`20.315584610021187", ",", 
+     RowBox[{
+     "-", "0.73900849333884055554525058915357699059`15.893315152710063"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.15815064633098029394787416114974900346`20.315584610021183", ",", 
+     RowBox[{
+     "-", "0.97511921735087460149711252186565368411`15.993010439007726"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.21086752844130705859716554819966533794`20.315584610021187", ",", 
+     RowBox[{
+     "-", "1.14826358393044626805720064403164535906`16.06289334678861"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.26358441055163382324645693524958167243`20.315584610021183", ",", 
+     RowBox[{
+     "-", "1.28316172312600955796559455192541951489`16.109740812347646"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.31630129266196058789574832229949800691`20.315584610021183", ",", 
+     RowBox[{
+     "-", "1.39603015388519588612046268341960188892`16.15444319730167"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.3690181747722873525450397093494143414`20.315584610021183", ",", 
+     RowBox[{
+     "-", "1.49746695143471276203502016545934773369`16.25322407893463"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.42173505688261411719433109639933067589`20.315584610021183", ",", 
+     RowBox[{
+     "-", "1.59522100581192861300947473284420712635`16.298989928543698"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.47445193899294088184362248344924701037`20.315584610021183", ",", 
+     RowBox[{
+     "-", "1.69613694913492181348009928902095123669`16.219597113115928"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.52716882110326764649291387049916334486`20.315584610021183", ",", 
+     RowBox[{
+     "-", "1.80777858759701296249961256388254286487`16.218903597883987"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.57988570321359441114220525754907967934`20.315584610021187", ",", 
+     RowBox[{
+     "-", "1.94031091181387509853226781576483995886`16.236149684438914"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.63260258532392117579149664459899601383`20.315584610021183", ",", 
+     RowBox[{
+     "-", "2.10916938928884960322830822505222107818`16.26298714050263"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.68531946743424794044078803164891234831`20.315584610021183", ",", 
+     RowBox[{
+     "-", "2.33809414037748501030202469352265976644`16.31224916505726"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.7380363495445747050900794186988286828`20.315584610021183", ",", 
+     RowBox[{
+     "-", "2.6557655903060844287771392519731182094`16.397272169656212"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.79075323165490146973937080574874501729`20.315584610021183", ",", 
+     RowBox[{
+     "-", "3.06267743539050420384498948707244991159`16.660200129642245"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.84347011376522823438866219279866135177`20.315584610021183", ",", 
+     RowBox[{
+     "-", "3.48147643796912676056981983700314573776`16.515264644313426"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.89618699587555499903795357984857768626`20.31558461002118", ",", 
+     RowBox[{
+     "-", "3.8210937606114880697772221442591278605`16.51442234625631"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.94890387798588176368724496689849402074`20.315584610021183", ",", 
+     RowBox[{
+     "-", "4.06768156839566162190489769972060684268`16.51100678901559"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.00162076009620852833653635394841035523`20.315584610021183", ",", 
+     RowBox[{
+     "-", "4.24819251596005574478750339269379161459`16.536985238246814"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.05433764220653529298582774099832668971`20.315584610021183", ",", 
+     RowBox[{
+     "-", "4.38825059178678514763731894717473651921`16.535490122691773"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1.1070545243168620576351191280482430242`20.315584610021187", ",", 
+     RowBox[{
+     "-", "4.50485255002819175320712450122781607367`16.557090545380348"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.15977140642718882228441051509815935869`20.315584610021183", ",", 
+     RowBox[{
+     "-", "4.60902494164753546388190524342563496127`16.616773252245356"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1.21248828853751558693370190214807569317`20.31558461002118", ",", 
+     RowBox[{
+     "-", "4.7086904696356675463585709154458755342`16.662686546829583"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.26520517064784235158299328919799202766`20.315584610021173", ",", 
+     RowBox[{
+     "-", "4.81068296479433894886185439998101044232`16.579039895648922"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1.31792205275816911623228467624790836214`20.31558461002118", ",", 
+     RowBox[{
+     "-", "4.92237815628349974716415785178780089015`16.5603549039979"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.37063893486849588088157606329782469663`20.315584610021183", ",", 
+     RowBox[{
+     "-", "5.053519949368749607979141892485310264`16.560774908166053"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.42335581697882264553086745034774103111`20.315584610021183", ",", 
+     RowBox[{
+     "-", "5.21878923582710293735175681199037748978`16.56863960119389"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1.4760726990891494101801588373976573656`20.315584610021183", ",", 
+     RowBox[{
+     "-", "5.44092317484765429729809900384016380024`16.58802558927979"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.52878958119947617482945022444757370009`20.315584610021183", ",", 
+     RowBox[{
+     "-", "5.74885222494654089510170913273480714041`16.63138869375189"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.58150646330980293947874161149749003457`20.315584610021187", ",", 
+     RowBox[{
+     "-", "6.14906602345469936918632096645162729249`16.76559567138448"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1.63422334542012970412803299854740636906`20.31558461002119", ",", 
+     RowBox[{
+     "-", "6.57246671719421173811154050507648312688`16.701059221195177"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1.68694022753045646877732438559732270354`20.31558461002119", ",", 
+     RowBox[{
+     "-", "6.92299298572697353745757282883383032278`16.679776818738592"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1.73965710964078323342661577264723903803`20.31558461002119", ",", 
+     RowBox[{
+     "-", "7.17860168981076211881102879854809361174`16.677148701051934"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1.79237399175110999807590715969715537251`20.31558461002119", ",", 
+     RowBox[{
+     "-", "7.3646631463047338739107145996925583785`16.724316632577178"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1.845090873861436762725198546747071707`20.31558461002119", ",", 
+     RowBox[{
+     "-", "7.50768358265233290471305680443244635513`16.687082958601867"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1.89780775597176352737448993379698804149`20.31558461002119", ",", 
+     RowBox[{
+     "-", "7.62551650083226783644475098142732484407`16.70193543142663"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1.95052463808209029202378132084690437597`20.31558461002119", ",", 
+     RowBox[{
+     "-", "7.72969314186363619593492921512643059471`16.73914307634471"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.00324152019241705667307270789682071046`20.315584610021194", ",", 
+     RowBox[{
+     "-", "7.82837859280953128896689282994813744238`16.815851292730038"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.05595840230274382132236409494673704494`20.315584610021194", ",", 
+     RowBox[{
+     "-", "7.92846241127525873406649487296535783978`16.718432341430063"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.10867528441307058597165548199665337943`20.3155846100212", ",", 
+     RowBox[{
+     "-", "8.03720276736501264690911625524584790142`16.697579046848674"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.16139216652339735062094686904656971392`20.3155846100212", ",", 
+     RowBox[{
+     "-", "8.16400296855289101294842788038029197635`16.695045319861077"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2.2141090486337241152702382560964860484`20.3155846100212", ",", 
+     RowBox[{
+     "-", "8.3228800317741681870407403247026763316`16.698471901930883"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.26682593074405087991952964314640238289`20.3155846100212", ",", 
+     RowBox[{
+     "-", "8.53561718437023956582514024141580591208`16.71029209083092"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.31954281285437764456882103019631871737`20.3155846100212", ",", 
+     RowBox[{
+     "-", "8.83113325915079815470597208600237205216`16.738878403751304"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2.37225969496470440921811241724623505186`20.31558461002119", ",", 
+     RowBox[{
+     "-", "9.22115534416533466837503500605470954467`16.82045836638028"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.42497657707503117386740380429615138634`20.315584610021187", ",", 
+     RowBox[{
+     "-", "9.64548254905784170143953069813451659919`16.799390581779193"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2.47769345918535793851669519134606772083`20.31558461002119", ",", 
+     RowBox[{
+     "-", "10.00459635964825549121210616859226627863`16.771195409088758"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2.53041034129568470316598657839598405532`20.315584610021183", ",", 
+     RowBox[{
+     "-", "10.26775772615130337316603927953393400239`16.765499176768653"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2.5831272234060114678152779654459003898`20.315584610021183", ",", 
+     RowBox[{
+     "-", "10.45820779330912003637136196335206832345`16.776188505373568"}]}], 
+    "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.7692563398530483`*^9},
+ CellLabel->"Out[46]=",ExpressionUUID->"9f6b9295-fa4b-4efb-838d-ec7197a9b97f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListLinePlot", "[", "phNs", "]"}]], "Input",
+ CellChangeTimes->{{3.769256113220868*^9, 3.7692561168510933`*^9}, 
+   3.769256151241983*^9, 3.7692561991373367`*^9, 3.769256243060667*^9},
+ CellLabel->"In[40]:=",ExpressionUUID->"637ca77d-8154-48c5-af83-671fef65d1ba"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, {}, 
+     {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+       NCache[
+        Rational[1, 60], 0.016666666666666666`]], AbsoluteThickness[1.6], 
+      LineBox[CompressedData["
+1:eJxdkH8s1GEcx7++dCqp+yFacY67s0lkHLX58fn2Q0WSYxExV7pm0oxhS50O
+i9iyrCY/JhJrR8ahqxj3DNEKJdTYOoZc+Z0czs9q9/zVZ3v22WfP87w/7/fL
+6kpsgJgkCMLp7/nX/y/oPrrj5UYl2JUYHuaFDSl1cyOMR33gairUyvmCyY7T
+nu3Qy808Yi+Yw/fvwbehtcw7YkF5RtrGz1V9gkOjJ/P6Mxfx+36gVy0ouEFL
+yvx6RtRm8VeYMVpUl2iW8f8hUFVZJNEytEr1RETl9XAVNPAv3xFx17DeCHi4
+pnnIpteV5sbBSTE5o8AlxAnpRltYfxzCWsXOj4YJ1G6TYsad/Q4fLSPqoxtI
+pNunhqTnTw1J2IZiqIrXg+d+wvl8LS1cuh3p9k9CtzZPSB8yQqzQrpAH1dPg
+7kIrKsjdjXR+ZiFPYCf086Ij1Zubkme0eYDyLnubTTrS+ZuHuVTbB7n3Gaju
+lHFPiuIXxMvZjBUDJtL5XYATvmtu5bFMlNFXyg699ht6vC8u1g0wkc7/Ijh+
+63/B9WShUJEg1sVUA45WMJFey8J5NCAfI+a6XU2Qw0ynkt6xBFIR03vniAnO
+twylLFF4atteRCZfok8nrkBhI5vdt2mK82rBtCmlrTx/H/pCmxN18lfh4GPG
+K4HPfpx/FdayEJMvP4BkD9PkZQNrIN1ICxtTmGMe69DSLDkWnWiBJBxTMuXu
+Bgz3SwUqQzbmswlBTe/EmVI2ElbLAkJctmC0urdaMMXGvAjK+Wxg8nF/S8Qq
+fiIsjCeosJWawRaFJeZHUDl+jR67WBwkifyhzfTRoyLaEpxWAjmYpx7VTjDv
++VdwkNrWqSzRmqTizK5GuzOtMF+SuhB8wzdbZoWE87d8IldJyt5Y4+UWZ415
+61MONb61t324qEnxdsH/sz4lbnZPCCV5mL8BFceLzjbL4iG+ZE+RZ6UBNcXw
+dC2c5KE/x6iAew==
+       "]]}}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+      NCache[
+       Rational[1, 60], 0.016666666666666666`]], AbsoluteThickness[1.6]}, {
+     {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+       NCache[
+        Rational[1, 60], 0.016666666666666666`]], AbsoluteThickness[
+      1.6]}, {}}, {
+     {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+       NCache[
+        Rational[1, 60], 0.016666666666666666`]], AbsoluteThickness[
+      1.6]}, {}}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{
+   "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 2.5831272234060116`}, {-10.45820779330912, 0}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.02]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.769256117329644*^9, 3.769256151755087*^9, 3.769256199420348*^9, {
+   3.769256239775713*^9, 3.769256243360759*^9}},
+ CellLabel->"Out[40]=",ImageCache->GraphicsData["CompressedBitmap", "\<\
+eJzVnHd0Xcdxh6/Ym+Q4sZ3ESWzZcS+yVSzbJ3GJHdtxzlHixKqWrEaRIinR
+olgksVPsVaxi771XgBTAChawgwWFIACCINhQCYJoBElwM9/c3ef78N4lmJO/
+cs954H377szuzk75zexePvVa7y6dur/Wu2vH1x7+Tc/XenTp2rHXw79+p6c0
+NX/A8x7o4nne2Yc97o3c2j96deWP531G/2luqqurzalTp0xBQYH/wH9H/37y
+5EmzZcuW0N+hzc3N1W9hv585c+b/9e9R8/ut/aGovNpcu1Gn31pF05w+fdps
+3rzZ5Ofn+zS/0R9amutVN836PTnmjRHbzMdr08zdu3Fpt27dagoLC33aX+kP
+rU1N3S3zyaF8885HO8yz/TeZYfNTzenckng8Ysb8S8uj/vYds/fERfPetD3m
+mX6bTP8Ze83B9Mvm9p0Gr00TcvmFnSl9Dp6zX+l7Tt5tdh27YOrqb7drgvzn
+lrz+1h2zdle2+cOgLabb2GSTsD/PVNXWd2iC/GdWglfKqs2oRYfMM303mgnL
+j5riazXeQz7tQ5a2vr7e2Eu+hfD7qeV3KOOyDGO7+eOQBLN5X55K4lM+P18g
+bU1lZaVZsGCBKS8vV9Kqqioze/ZsM2LECDNv3jxTV1cX3s8/235qb942yz7J
+Ms8P2Gx6T9ltMs6Vep+O7qe0tNQMGTLEXL16VUlXrVplpkyZYi5dumQmTpxo
+Nm3aFNVP1Ar/U0A+H849oKszTTSsoqrO+0u/HxH+xYsXzdy5c3U6fLg/cOBA
+M32gnSkrKzPDhg0zRUVFynTo0KEmPT1d748fP66/3b17t5nty6n5iRMn9Oe8
+vDx/MD+yD1wuqTK9ZLJ//DDRJB0+bxoa7np/FRkMve3cudPs3r1bP9xnZ2e7
+wSBuOiwuLja3bt1S0Zw7d047kMfMhx9+iOiDg0lKSjJnz57Vn0Vq/mB+qA+0
+MFdkMEj+FRnMsTNXP+uPo7X+0157KSkpMcOHD4/0OGjQIOakXFhURiDK5TUL
+LEJOTs6fF+FHrqvSKtNn6m7zst/V54JdtVOdGTVqlLKnKy6+79u3T++Rw/jx
+40NVKjKhsirz3tQ92suRrKt/Hd0LWsvydu/ePdLLkSNHtNeEhATTv39/c/To
+0dBenrS9XBWFwl28LAZyJPPK3wR1to25ffu22bVrl7lx44ZSiXaYY8eOmZUr
+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
+sM1J07UFZ2+71y9dY++9B/4Hvqg5jA==\
+\>"],ExpressionUUID->"de4d7751-e0ba-43ad-bdff-d81b07b9701a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "KerrGeoFrequencies"}]], "Input",
+ CellChangeTimes->{{3.768906548911672*^9, 3.768906549177404*^9}},
+ CellLabel->"In[79]:=",ExpressionUUID->"91108c0d-a760-457e-b1c8-ac2c6f970d44"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = True, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox[
+           PaneBox[
+            TooltipBox[
+             ButtonBox[
+              PaneSelectorBox[{False->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIcon"],
+                ImageSizeCache->{13., {4., 9.}}], True->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIconHot"],
+                ImageSizeCache->{13., {4., 9.}}]}, Dynamic[
+                CurrentValue["MouseOver"]]],
+              Appearance->None,
+              BaseStyle->"Link",
+              ButtonData->"paclet:KerrGeodesics/ref/KerrGeoFrequencies",
+              ButtonNote->"paclet:KerrGeodesics/ref/KerrGeoFrequencies"],
+             "\"paclet:KerrGeodesics/ref/KerrGeoFrequencies\""],
+            FrameMargins->{{0, 4}, {0, 2}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"KerrGeoFrequencies[a, p, e, x] returns the orbital \
+frequencies.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Documentation\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Documentation\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Documentation", "Tooltip"]& ], 
+                   
+                   TemplateBox[{
+                    TemplateBox[{
+                    "\"Local \[RightGuillemet]\"", 
+                    "paclet:KerrGeodesics/ref/KerrGeoFrequencies", 
+                    "paclet:KerrGeodesics/ref/KerrGeoFrequencies", "Link", {
+                    RGBColor[0.9686274509803922, 0.4666666666666667, 0.]}, 
+                    BaseStyle -> {
+                    RGBColor[0.0784313725490196, 0.1568627450980392, 0.6]}}, 
+                    "HyperlinkTemplate"]},
+                    "RowDefault"]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"KerrGeoFrequencies", "[", 
+                    RowBox[{
+                    "KerrGeodesics`OrbitalFrequencies`Private`a_", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`p_", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`e_", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`x_", ",", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+                    RowBox[{"Module", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    "KerrGeodesics`OrbitalFrequencies`Private`M", "=", "1"}], 
+                    ",", "KerrGeodesics`OrbitalFrequencies`Private`En", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`L", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`Q", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`r1", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`r2", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`r3", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`r4", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`\[Epsilon]0", 
+                    ",", "KerrGeodesics`OrbitalFrequencies`Private`zm", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`a2zp", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`\[Epsilon]0zp", 
+                    ",", "KerrGeodesics`OrbitalFrequencies`Private`zmOverZp", 
+                    ",", "KerrGeodesics`OrbitalFrequencies`Private`kr", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`k\[Theta]", ",",
+                     "KerrGeodesics`OrbitalFrequencies`Private`\
+\[CapitalUpsilon]r", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`\
+\[CapitalUpsilon]\[Theta]", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`rp", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`rm", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`hr", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`hp", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`hm", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`\
+\[CapitalUpsilon]\[Phi]", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`\[CapitalGamma]\
+"}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"OptionValue", "[", "\<\"Time\"\>", "]"}], 
+                    "\[Equal]", "\<\"Mino\"\>"}], ",", 
+                    RowBox[{"Return", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "KerrGeodesics`OrbitalFrequencies`Private`\
+KerrGeoMinoFrequencies", "[", 
+                    RowBox[{"KerrGeodesics`OrbitalFrequencies`Private`a", ",",
+                     "KerrGeodesics`OrbitalFrequencies`Private`p", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`e", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`x"}], "]"}], 
+                    "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ";;", "4"}], "\[RightDoubleBracket]"}], 
+                    "]"}]}], "]"}], ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"OptionValue", "[", "\<\"Time\"\>", "]"}], 
+                    "\[Equal]", "\<\"BoyerLindquist\"\>"}], ",", 
+                    RowBox[{"Return", "[", 
+                    RowBox[{
+                    "KerrGeodesics`OrbitalFrequencies`Private`\
+KerrGeoBoyerLindquistFrequencies", "[", 
+                    RowBox[{
+                    "KerrGeodesics`OrbitalFrequencies`Private`a", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`p", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`e", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`x"}], "]"}], 
+                    "]"}]}], "]"}], ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"OptionValue", "[", "\<\"Time\"\>", "]"}], 
+                    "\[Equal]", "\<\"Proper\"\>"}], ",", 
+                    RowBox[{"Return", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "KerrGeodesics`OrbitalFrequencies`Private`\
+KerrGeoProperFrequencies", "[", 
+                    RowBox[{
+                    "KerrGeodesics`OrbitalFrequencies`Private`a", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`p", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`e", ",", 
+                    "KerrGeodesics`OrbitalFrequencies`Private`x"}], "]"}], 
+                    "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ";;", "3"}], "\[RightDoubleBracket]"}], 
+                    "]"}]}], "]"}], ";"}]}], "]"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    
+                    StyleBox["\<\" Default Definitions\"\>", 
+                    "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"DefaultValues\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "DefaultValues", "Tooltip"]& ], 
+                   InterpretationBox[GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{
+                    "SyntaxInformation", "[", "KerrGeoFrequencies", "]"}], 
+                    "=", 
+                    RowBox[{"{", 
+                    RowBox[{"\<\"ArgumentsPattern\"\>", "\[Rule]", 
+                    RowBox[{"{", 
+                    RowBox[{"_", ",", "_", ",", "_", ",", "_", ",", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}], "}"}]}], "}"}]}]}
+                    },
+                    BaselinePosition->{Baseline, {1, 1}},
+                    
+                    GridBoxAlignment->{
+                    "Columns" -> {{Left}}, "Rows" -> {{Baseline}}}],
+                    
+                    ColumnForm[{
+                    SyntaxInformation[
+                    KerrGeodesics`OrbitalFrequencies`KerrGeoFrequencies] = {
+                    "ArgumentsPattern" -> {
+                    Blank[], 
+                    Blank[], 
+                    Blank[], 
+                    Blank[], 
+                    OptionsPattern[]}}}],
+                    Editable->False]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Options\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Options\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Options", "Tooltip"]& ], 
+                   
+                   RowBox[{"\<\"Time\"\>", 
+                    "\[Rule]", "\<\"BoyerLindquist\"\>"}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], \
+"\<\"KerrGeodesics`OrbitalFrequencies`KerrGeoFrequencies\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"],
+               ImageSizeCache->{10., {2., 8.}}], True->
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"],
+               ImageSizeCache->{10., {2., 8.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox[
+           PaneBox[
+            TooltipBox[
+             ButtonBox[
+              PaneSelectorBox[{False->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIcon"],
+                ImageSizeCache->{13., {4., 9.}}], True->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIconHot"],
+                ImageSizeCache->{13., {4., 9.}}]}, Dynamic[
+                CurrentValue["MouseOver"]]],
+              Appearance->None,
+              BaseStyle->"Link",
+              ButtonData->"paclet:KerrGeodesics/ref/KerrGeoFrequencies",
+              ButtonNote->"paclet:KerrGeodesics/ref/KerrGeoFrequencies"],
+             "\"paclet:KerrGeodesics/ref/KerrGeoFrequencies\""],
+            FrameMargins->{{0, 4}, {0, 2}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"KerrGeoFrequencies[a, p, e, x] returns the orbital \
+frequencies.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{10., {2., 8.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{10., {2., 8.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "KerrGeoFrequencies[a, p, e, x] returns the orbital frequencies.", 
+    "Documentation" -> 
+    Association["Local" -> "paclet:KerrGeodesics/ref/KerrGeoFrequencies"], 
+    "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, KerrGeodesics`OrbitalFrequencies`KerrGeoFrequencies, {
+      KerrGeodesics`OrbitalFrequencies`KerrGeoFrequencies[
+         Pattern[KerrGeodesics`OrbitalFrequencies`Private`a, 
+          Blank[]], 
+         Pattern[KerrGeodesics`OrbitalFrequencies`Private`p, 
+          Blank[]], 
+         Pattern[KerrGeodesics`OrbitalFrequencies`Private`e, 
+          Blank[]], 
+         Pattern[KerrGeodesics`OrbitalFrequencies`Private`x, 
+          Blank[]], 
+         OptionsPattern[]] :> 
+       Module[{KerrGeodesics`OrbitalFrequencies`Private`M = 1, 
+          KerrGeodesics`OrbitalFrequencies`Private`En, 
+          KerrGeodesics`OrbitalFrequencies`Private`L, 
+          KerrGeodesics`OrbitalFrequencies`Private`Q, 
+          KerrGeodesics`OrbitalFrequencies`Private`r1, 
+          KerrGeodesics`OrbitalFrequencies`Private`r2, 
+          KerrGeodesics`OrbitalFrequencies`Private`r3, 
+          KerrGeodesics`OrbitalFrequencies`Private`r4, 
+          KerrGeodesics`OrbitalFrequencies`Private`\[Epsilon]0, 
+          KerrGeodesics`OrbitalFrequencies`Private`zm, 
+          KerrGeodesics`OrbitalFrequencies`Private`a2zp, 
+          KerrGeodesics`OrbitalFrequencies`Private`\[Epsilon]0zp, 
+          KerrGeodesics`OrbitalFrequencies`Private`zmOverZp, 
+          KerrGeodesics`OrbitalFrequencies`Private`kr, 
+          KerrGeodesics`OrbitalFrequencies`Private`k\[Theta], 
+          KerrGeodesics`OrbitalFrequencies`Private`\[CapitalUpsilon]r, 
+          KerrGeodesics`OrbitalFrequencies`Private`\[CapitalUpsilon]\[Theta], 
+          KerrGeodesics`OrbitalFrequencies`Private`rp, 
+          KerrGeodesics`OrbitalFrequencies`Private`rm, 
+          KerrGeodesics`OrbitalFrequencies`Private`hr, 
+          KerrGeodesics`OrbitalFrequencies`Private`hp, 
+          KerrGeodesics`OrbitalFrequencies`Private`hm, 
+          KerrGeodesics`OrbitalFrequencies`Private`\[CapitalUpsilon]\[Phi], 
+          KerrGeodesics`OrbitalFrequencies`Private`\[CapitalGamma]}, 
+         If[OptionValue["Time"] == "Mino", 
+           Return[
+            Part[
+             KerrGeodesics`OrbitalFrequencies`Private`KerrGeoMinoFrequencies[
+             KerrGeodesics`OrbitalFrequencies`Private`a, 
+              KerrGeodesics`OrbitalFrequencies`Private`p, 
+              KerrGeodesics`OrbitalFrequencies`Private`e, 
+              KerrGeodesics`OrbitalFrequencies`Private`x], 
+             Span[1, 4]]]]; If[OptionValue["Time"] == "BoyerLindquist", 
+           Return[
+            
+            KerrGeodesics`OrbitalFrequencies`Private`\
+KerrGeoBoyerLindquistFrequencies[
+            KerrGeodesics`OrbitalFrequencies`Private`a, 
+             KerrGeodesics`OrbitalFrequencies`Private`p, 
+             KerrGeodesics`OrbitalFrequencies`Private`e, 
+             KerrGeodesics`OrbitalFrequencies`Private`x]]]; 
+         If[OptionValue["Time"] == "Proper", 
+           Return[
+            Part[
+             
+             KerrGeodesics`OrbitalFrequencies`Private`\
+KerrGeoProperFrequencies[
+             KerrGeodesics`OrbitalFrequencies`Private`a, 
+              KerrGeodesics`OrbitalFrequencies`Private`p, 
+              KerrGeodesics`OrbitalFrequencies`Private`e, 
+              KerrGeodesics`OrbitalFrequencies`Private`x], 
+             Span[1, 3]]]]; Null]}], "SubValues" -> None, "DefaultValues" -> 
+    Information`InformationValueForm[
+     DefaultValues, KerrGeodesics`OrbitalFrequencies`KerrGeoFrequencies, {
+      SyntaxInformation[
+        KerrGeodesics`OrbitalFrequencies`KerrGeoFrequencies] -> {
+        "ArgumentsPattern" -> {
+           Blank[], 
+           Blank[], 
+           Blank[], 
+           Blank[], 
+           OptionsPattern[]}}}], "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> {"Time" -> "BoyerLindquist"}, "Attributes" -> {}, "FullName" -> 
+    "KerrGeodesics`OrbitalFrequencies`KerrGeoFrequencies"], False]]], "Output",\
+
+ CellChangeTimes->{
+  3.768906549591715*^9, {3.7689066809000463`*^9, 3.768906710032609*^9}, {
+   3.7689068264878187`*^9, 3.768906852935063*^9}, 3.768907561576972*^9, 
+   3.768907626369152*^9, {3.768907717155196*^9, 3.768907761231595*^9}, 
+   3.7689078614536123`*^9, 3.7689198037271223`*^9},
+ CellLabel->"Out[79]=",ExpressionUUID->"fad645c6-7ffc-44de-9a73-f3d0ef50f5dd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "KerrGeoConstantsOfMotion"}]], "Input",
+ CellChangeTimes->{{3.768907815128806*^9, 3.768907822194602*^9}},
+ CellLabel->"In[43]:=",ExpressionUUID->"5b14056f-5c34-4cfd-b53f-187a1935aad2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox[
+           PaneBox[
+            TooltipBox[
+             ButtonBox[
+              PaneSelectorBox[{False->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIcon"]], True->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIconHot"]]}, Dynamic[
+                CurrentValue["MouseOver"]]],
+              Appearance->None,
+              BaseStyle->"Link",
+              ButtonData->"paclet:KerrGeodesics/ref/KerrGeoConstantsOfMotion",
+              
+              ButtonNote->"paclet:KerrGeodesics/ref/KerrGeoConstantsOfMotion"],
+             "\"paclet:KerrGeodesics/ref/KerrGeoConstantsOfMotion\""],
+            FrameMargins->{{0, 4}, {0, 2}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"KerrGeoConstantsOfMotion[a, p, e, x] returns the \
+three constants of motion.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Documentation\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Documentation\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Documentation", "Tooltip"]& ], 
+                   
+                   TemplateBox[{
+                    TemplateBox[{
+                    "\"Local \[RightGuillemet]\"", 
+                    "paclet:KerrGeodesics/ref/KerrGeoConstantsOfMotion", 
+                    "paclet:KerrGeodesics/ref/KerrGeoConstantsOfMotion", 
+                    "Link", {
+                    RGBColor[0.9686274509803922, 0.4666666666666667, 0.]}, 
+                    BaseStyle -> {
+                    RGBColor[0.0784313725490196, 0.1568627450980392, 0.6]}}, 
+                    "HyperlinkTemplate"]},
+                    "RowDefault"]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"KerrGeoConstantsOfMotion", "[", 
+                    RowBox[{
+                    "0", ",", "KerrGeodesics`ConstantsOfMotion`Private`p_", 
+                    ",", "KerrGeodesics`ConstantsOfMotion`Private`e_", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`x_"}], "]"}], ":=", 
+                    RowBox[{"Association", "[", 
+                    RowBox[{
+                    RowBox[{"\<\"\[ScriptCapitalE]\"\>", "\[Rule]", 
+                    RowBox[{"KerrGeoEnergy", "[", 
+                    RowBox[{"0", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`p", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`e", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`x"}], "]"}]}], 
+                    ",", 
+                    RowBox[{"\<\"\[ScriptCapitalL]\"\>", "\[Rule]", 
+                    RowBox[{"KerrGeoAngularMomentum", "[", 
+                    RowBox[{
+                    "0", ",", "KerrGeodesics`ConstantsOfMotion`Private`p", 
+                    ",", "KerrGeodesics`ConstantsOfMotion`Private`e", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`x"}], "]"}]}], 
+                    ",", 
+                    RowBox[{"\<\"\[ScriptCapitalQ]\"\>", "\[Rule]", 
+                    RowBox[{"KerrGeoCarterConstant", "[", 
+                    RowBox[{
+                    "0", ",", "KerrGeodesics`ConstantsOfMotion`Private`p", 
+                    ",", "KerrGeodesics`ConstantsOfMotion`Private`e", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`x"}], "]"}]}]}], 
+                    "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"KerrGeoConstantsOfMotion", "[", 
+                    RowBox[{
+                    "KerrGeodesics`ConstantsOfMotion`Private`a_", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`p_", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`e_", ",", 
+                    RowBox[{
+                    "KerrGeodesics`ConstantsOfMotion`Private`x", ":", 
+                    RowBox[{"1", "|", 
+                    RowBox[{"-", "1"}]}]}]}], "]"}], ":=", 
+                    RowBox[{"Association", "[", 
+                    RowBox[{
+                    RowBox[{"\<\"\[ScriptCapitalE]\"\>", "\[Rule]", 
+                    RowBox[{"KerrGeoEnergy", "[", 
+                    RowBox[{
+                    "KerrGeodesics`ConstantsOfMotion`Private`a", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`p", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`e", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`x"}], "]"}]}], 
+                    ",", 
+                    RowBox[{"\<\"\[ScriptCapitalL]\"\>", "\[Rule]", 
+                    RowBox[{"KerrGeoAngularMomentum", "[", 
+                    RowBox[{"KerrGeodesics`ConstantsOfMotion`Private`a", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`p", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`e", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`x"}], "]"}]}], 
+                    ",", 
+                    RowBox[{"\<\"\[ScriptCapitalQ]\"\>", "\[Rule]", 
+                    RowBox[{"KerrGeoCarterConstant", "[", 
+                    RowBox[{
+                    "KerrGeodesics`ConstantsOfMotion`Private`a", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`p", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`e", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`x"}], "]"}]}]}], 
+                    "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"KerrGeoConstantsOfMotion", "[", 
+                    RowBox[{
+                    "KerrGeodesics`ConstantsOfMotion`Private`a_", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`p_", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`e_", ",", 
+                    RowBox[{"0", "|", "0.`"}]}], "]"}], ":=", 
+                    RowBox[{"Association", "[", 
+                    RowBox[{
+                    RowBox[{"\<\"\[ScriptCapitalE]\"\>", "\[Rule]", 
+                    RowBox[{"KerrGeoEnergy", "[", 
+                    RowBox[{
+                    "KerrGeodesics`ConstantsOfMotion`Private`a", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`p", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`e", ",", "0"}], 
+                    "]"}]}], ",", 
+                    RowBox[{"\<\"\[ScriptCapitalL]\"\>", "\[Rule]", 
+                    RowBox[{"KerrGeoAngularMomentum", "[", 
+                    RowBox[{
+                    "KerrGeodesics`ConstantsOfMotion`Private`a", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`p", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`e", ",", "0"}], 
+                    "]"}]}], ",", 
+                    RowBox[{"\<\"\[ScriptCapitalQ]\"\>", "\[Rule]", 
+                    RowBox[{"KerrGeoCarterConstant", "[", 
+                    RowBox[{
+                    "KerrGeodesics`ConstantsOfMotion`Private`a", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`p", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`e", ",", "0"}], 
+                    "]"}]}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"KerrGeoConstantsOfMotion", "[", 
+                    RowBox[{
+                    "KerrGeodesics`ConstantsOfMotion`Private`a_", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`p_", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`e_", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`x_"}], "]"}], ":=", 
+                    RowBox[{"Module", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "KerrGeodesics`ConstantsOfMotion`Private`En", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`L"}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"KerrGeodesics`ConstantsOfMotion`Private`En", "=", 
+                    RowBox[{"KerrGeoEnergy", "[", 
+                    RowBox[{
+                    "KerrGeodesics`ConstantsOfMotion`Private`a", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`p", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`e", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`x"}], "]"}]}], 
+                    ";", 
+                    RowBox[{
+                    "KerrGeodesics`ConstantsOfMotion`Private`L", "=", 
+                    RowBox[{"KerrGeoAngularMomentum", "[", 
+                    RowBox[{
+                    "KerrGeodesics`ConstantsOfMotion`Private`a", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`p", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`e", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`x"}], "]"}]}], 
+                    ";", 
+                    RowBox[{"Association", "[", 
+                    RowBox[{
+                    
+                    RowBox[{"\<\"\[ScriptCapitalE]\"\>", "\[Rule]", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`En"}], ",", 
+                    
+                    RowBox[{"\<\"\[ScriptCapitalL]\"\>", "\[Rule]", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`L"}], ",", 
+                    RowBox[{"\<\"\[ScriptCapitalQ]\"\>", "\[Rule]", 
+                    RowBox[{"KerrGeoCarterConstant", "[", 
+                    RowBox[{
+                    "KerrGeodesics`ConstantsOfMotion`Private`a", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`p", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`e", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`x", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`En", ",", 
+                    "KerrGeodesics`ConstantsOfMotion`Private`L"}], "]"}]}]}], 
+                    "]"}]}]}], "]"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], \
+"\<\"KerrGeodesics`ConstantsOfMotion`KerrGeoConstantsOfMotion\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox[
+           PaneBox[
+            TooltipBox[
+             ButtonBox[
+              PaneSelectorBox[{False->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIcon"],
+                ImageSizeCache->{13., {4., 9.}}], True->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIconHot"],
+                ImageSizeCache->{13., {4., 9.}}]}, Dynamic[
+                CurrentValue["MouseOver"]]],
+              Appearance->None,
+              BaseStyle->"Link",
+              ButtonData->"paclet:KerrGeodesics/ref/KerrGeoConstantsOfMotion",
+              
+              ButtonNote->"paclet:KerrGeodesics/ref/KerrGeoConstantsOfMotion"],
+             "\"paclet:KerrGeodesics/ref/KerrGeoConstantsOfMotion\""],
+            FrameMargins->{{0, 4}, {0, 2}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"KerrGeoConstantsOfMotion[a, p, e, x] returns the \
+three constants of motion.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{10., {2., 8.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{10., {2., 8.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "KerrGeoConstantsOfMotion[a, p, e, x] returns the three constants of \
+motion.", "Documentation" -> 
+    Association[
+     "Local" -> "paclet:KerrGeodesics/ref/KerrGeoConstantsOfMotion"], 
+    "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, KerrGeodesics`ConstantsOfMotion`KerrGeoConstantsOfMotion, {
+      KerrGeodesics`ConstantsOfMotion`KerrGeoConstantsOfMotion[0, 
+         Pattern[KerrGeodesics`ConstantsOfMotion`Private`p, 
+          Blank[]], 
+         Pattern[KerrGeodesics`ConstantsOfMotion`Private`e, 
+          Blank[]], 
+         Pattern[KerrGeodesics`ConstantsOfMotion`Private`x, 
+          Blank[]]] :> 
+       Association[
+        "\[ScriptCapitalE]" -> 
+         KerrGeodesics`ConstantsOfMotion`KerrGeoEnergy[
+          0, KerrGeodesics`ConstantsOfMotion`Private`p, 
+           KerrGeodesics`ConstantsOfMotion`Private`e, 
+           KerrGeodesics`ConstantsOfMotion`Private`x], "\[ScriptCapitalL]" -> 
+         KerrGeodesics`ConstantsOfMotion`KerrGeoAngularMomentum[
+          0, KerrGeodesics`ConstantsOfMotion`Private`p, 
+           KerrGeodesics`ConstantsOfMotion`Private`e, 
+           KerrGeodesics`ConstantsOfMotion`Private`x], "\[ScriptCapitalQ]" -> 
+         KerrGeodesics`ConstantsOfMotion`KerrGeoCarterConstant[
+          0, KerrGeodesics`ConstantsOfMotion`Private`p, 
+           KerrGeodesics`ConstantsOfMotion`Private`e, 
+           KerrGeodesics`ConstantsOfMotion`Private`x]], 
+       KerrGeodesics`ConstantsOfMotion`KerrGeoConstantsOfMotion[
+         Pattern[KerrGeodesics`ConstantsOfMotion`Private`a, 
+          Blank[]], 
+         Pattern[KerrGeodesics`ConstantsOfMotion`Private`p, 
+          Blank[]], 
+         Pattern[KerrGeodesics`ConstantsOfMotion`Private`e, 
+          Blank[]], 
+         Pattern[KerrGeodesics`ConstantsOfMotion`Private`x, 
+          Alternatives[1, -1]]] :> 
+       Association[
+        "\[ScriptCapitalE]" -> 
+         KerrGeodesics`ConstantsOfMotion`KerrGeoEnergy[
+          KerrGeodesics`ConstantsOfMotion`Private`a, 
+           KerrGeodesics`ConstantsOfMotion`Private`p, 
+           KerrGeodesics`ConstantsOfMotion`Private`e, 
+           KerrGeodesics`ConstantsOfMotion`Private`x], "\[ScriptCapitalL]" -> 
+         KerrGeodesics`ConstantsOfMotion`KerrGeoAngularMomentum[
+          KerrGeodesics`ConstantsOfMotion`Private`a, 
+           KerrGeodesics`ConstantsOfMotion`Private`p, 
+           KerrGeodesics`ConstantsOfMotion`Private`e, 
+           KerrGeodesics`ConstantsOfMotion`Private`x], "\[ScriptCapitalQ]" -> 
+         KerrGeodesics`ConstantsOfMotion`KerrGeoCarterConstant[
+          KerrGeodesics`ConstantsOfMotion`Private`a, 
+           KerrGeodesics`ConstantsOfMotion`Private`p, 
+           KerrGeodesics`ConstantsOfMotion`Private`e, 
+           KerrGeodesics`ConstantsOfMotion`Private`x]], 
+       KerrGeodesics`ConstantsOfMotion`KerrGeoConstantsOfMotion[
+         Pattern[KerrGeodesics`ConstantsOfMotion`Private`a, 
+          Blank[]], 
+         Pattern[KerrGeodesics`ConstantsOfMotion`Private`p, 
+          Blank[]], 
+         Pattern[KerrGeodesics`ConstantsOfMotion`Private`e, 
+          Blank[]], 
+         Alternatives[0, 0.]] :> 
+       Association[
+        "\[ScriptCapitalE]" -> 
+         KerrGeodesics`ConstantsOfMotion`KerrGeoEnergy[
+          KerrGeodesics`ConstantsOfMotion`Private`a, 
+           KerrGeodesics`ConstantsOfMotion`Private`p, 
+           KerrGeodesics`ConstantsOfMotion`Private`e, 0], "\[ScriptCapitalL]" -> 
+         KerrGeodesics`ConstantsOfMotion`KerrGeoAngularMomentum[
+          KerrGeodesics`ConstantsOfMotion`Private`a, 
+           KerrGeodesics`ConstantsOfMotion`Private`p, 
+           KerrGeodesics`ConstantsOfMotion`Private`e, 0], "\[ScriptCapitalQ]" -> 
+         KerrGeodesics`ConstantsOfMotion`KerrGeoCarterConstant[
+          KerrGeodesics`ConstantsOfMotion`Private`a, 
+           KerrGeodesics`ConstantsOfMotion`Private`p, 
+           KerrGeodesics`ConstantsOfMotion`Private`e, 0]], 
+       KerrGeodesics`ConstantsOfMotion`KerrGeoConstantsOfMotion[
+         Pattern[KerrGeodesics`ConstantsOfMotion`Private`a, 
+          Blank[]], 
+         Pattern[KerrGeodesics`ConstantsOfMotion`Private`p, 
+          Blank[]], 
+         Pattern[KerrGeodesics`ConstantsOfMotion`Private`e, 
+          Blank[]], 
+         Pattern[KerrGeodesics`ConstantsOfMotion`Private`x, 
+          Blank[]]] :> 
+       Module[{KerrGeodesics`ConstantsOfMotion`Private`En, 
+          KerrGeodesics`ConstantsOfMotion`Private`L}, 
+         KerrGeodesics`ConstantsOfMotion`Private`En = 
+          KerrGeodesics`ConstantsOfMotion`KerrGeoEnergy[
+           KerrGeodesics`ConstantsOfMotion`Private`a, 
+            KerrGeodesics`ConstantsOfMotion`Private`p, 
+            KerrGeodesics`ConstantsOfMotion`Private`e, 
+            KerrGeodesics`ConstantsOfMotion`Private`x]; 
+         KerrGeodesics`ConstantsOfMotion`Private`L = 
+          KerrGeodesics`ConstantsOfMotion`KerrGeoAngularMomentum[
+           KerrGeodesics`ConstantsOfMotion`Private`a, 
+            KerrGeodesics`ConstantsOfMotion`Private`p, 
+            KerrGeodesics`ConstantsOfMotion`Private`e, 
+            KerrGeodesics`ConstantsOfMotion`Private`x]; 
+         Association[
+          "\[ScriptCapitalE]" -> KerrGeodesics`ConstantsOfMotion`Private`En, 
+           "\[ScriptCapitalL]" -> KerrGeodesics`ConstantsOfMotion`Private`L, 
+           "\[ScriptCapitalQ]" -> 
+           KerrGeodesics`ConstantsOfMotion`KerrGeoCarterConstant[
+            KerrGeodesics`ConstantsOfMotion`Private`a, 
+             KerrGeodesics`ConstantsOfMotion`Private`p, 
+             KerrGeodesics`ConstantsOfMotion`Private`e, 
+             KerrGeodesics`ConstantsOfMotion`Private`x, 
+             KerrGeodesics`ConstantsOfMotion`Private`En, 
+             KerrGeodesics`ConstantsOfMotion`Private`L]]]}], "SubValues" -> 
+    None, "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> None, "Attributes" -> {}, "FullName" -> 
+    "KerrGeodesics`ConstantsOfMotion`KerrGeoConstantsOfMotion"], 
+   False]]], "Output",
+ CellChangeTimes->{3.768907823081422*^9, 3.768907861521994*^9},
+ CellLabel->"Out[43]=",ExpressionUUID->"6799d740-343b-40b6-9b0e-f41352d085ef"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"KerrGeoConstantsOfMotion", "[", 
+  RowBox[{"0.1`25", ",", "10", ",", "0.7`25", ",", 
+   RowBox[{"Cos", "[", 
+    RowBox[{
+     RowBox[{"\[Pi]", "/", "2"}], "+", "0.5`25"}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.768907830008057*^9, 3.7689078335726757`*^9}},
+ CellLabel->"In[44]:=",ExpressionUUID->"b9731782-9e40-458b-916b-84a4b709dda3"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"\[ScriptCapitalE]\"\>", "\[Rule]", 
+    "0.97628991198649760206262948074725616844`23.56319568374423"}], ",", 
+   RowBox[{"\<\"\[ScriptCapitalL]\"\>", "\[Rule]", 
+    RowBox[{
+    "-", "1.89099630519393907541766344718683107586`21.498561558049612"}]}], 
+   ",", 
+   RowBox[{"\<\"\[ScriptCapitalQ]\"\>", "\[Rule]", 
+    "11.98196595476151235495550830674029929068`21.197379706371265"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{{3.768907831094347*^9, 3.768907861533856*^9}},
+ CellLabel->"Out[44]=",ExpressionUUID->"1cd970a2-0de4-4361-b50b-491790e27c91"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"KerrGeoFrequencies", "[", 
+  RowBox[{"0.1`25", ",", "10", ",", "0.7`25", ",", 
+   RowBox[{"Cos", "[", 
+    RowBox[{
+     RowBox[{"\[Pi]", "/", "2"}], "+", "0.5`25"}], "]"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"KerrGeoFrequencies", "[", 
+  RowBox[{"0.1`25", ",", "10", ",", "0.7`25", ",", 
+   RowBox[{"Cos", "[", 
+    RowBox[{
+     RowBox[{"\[Pi]", "/", "2"}], "+", "0.5`25"}], "]"}], ",", 
+   RowBox[{"Time", "\[Rule]", "\"\<Mino\>\""}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.768904508251656*^9, 3.768904555723384*^9}, {
+  3.768906507642445*^9, 3.768906534251315*^9}, {3.768906582862665*^9, 
+  3.768906584333053*^9}, {3.768906865817975*^9, 3.7689068700535507`*^9}},
+ CellLabel->"In[80]:=",ExpressionUUID->"17f7c7f1-efb3-4eef-9075-dfbff52e3f07"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"\\!\\(\\*SubscriptBox[\\(\[CapitalOmega]\\), \\(r\\)]\\)\"\>",
+     "\[Rule]", 
+    "0.00899576238733807332996889642615506664`17.799556723350907"}], ",", 
+   RowBox[{"\<\"\\!\\(\\*SubscriptBox[\\(\[CapitalOmega]\\), \
+\\(\[Theta]\\)]\\)\"\>", "\[Rule]", 
+    "0.01488508658141898606196326121880248339`17.800211700370525"}], ",", 
+   RowBox[{"\<\"\\!\\(\\*SubscriptBox[\\(\[CapitalOmega]\\), \\(\[Phi]\\)]\\)\
+\"\>", "\[Rule]", 
+    RowBox[{
+    "-", "0.0147762172851112617114967262903720634`17.00329351530812"}]}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{
+  3.76890457207622*^9, {3.7689065085374107`*^9, 3.768906534693795*^9}, {
+   3.768906584709177*^9, 3.76890661156995*^9}, 3.768906681772393*^9, 
+   3.7689067132370157`*^9, 3.76890676428645*^9, {3.7689068265912046`*^9, 
+   3.7689068705375834`*^9}, 3.768907561594748*^9, 3.768907626384192*^9, {
+   3.7689077171717587`*^9, 3.768907761252537*^9}, 3.768907861588738*^9, 
+   3.768919805970757*^9},
+ CellLabel->"Out[80]=",ExpressionUUID->"672acad4-ac63-40fa-a729-7308d170a307"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"\\!\\(\\*SubscriptBox[\\(\[CapitalUpsilon]\\), \
+\\(r\\)]\\)\"\>", "\[Rule]", 
+    "2.38374693481683234751060079798734110344`20.315584610021187"}], ",", 
+   RowBox[{"\<\"\\!\\(\\*SubscriptBox[\\(\[CapitalUpsilon]\\), \
+\\(\[Theta]\\)]\\)\"\>", "\[Rule]", 
+    "3.94433267411370499198912753699186273262`20.61183987071562"}], ",", 
+   RowBox[{"\<\"\\!\\(\\*SubscriptBox[\\(\[CapitalUpsilon]\\), \
+\\(\[Phi]\\)]\\)\"\>", "\[Rule]", 
+    RowBox[{
+    "-", "3.91548388507338033255121290493383407434`17.078689502421092"}]}], 
+   ",", 
+   RowBox[{"\<\"\[CapitalGamma]\"\>", "\[Rule]", 
+    "264.98553787637385761989401875716916225254`17.800882343406705"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{
+  3.76890457207622*^9, {3.7689065085374107`*^9, 3.768906534693795*^9}, {
+   3.768906584709177*^9, 3.76890661156995*^9}, 3.768906681772393*^9, 
+   3.7689067132370157`*^9, 3.76890676428645*^9, {3.7689068265912046`*^9, 
+   3.7689068705375834`*^9}, 3.768907561594748*^9, 3.768907626384192*^9, {
+   3.7689077171717587`*^9, 3.768907761252537*^9}, 3.768907861588738*^9, 
+   3.768919805973258*^9},
+ CellLabel->"Out[81]=",ExpressionUUID->"da789f42-e8e1-4afa-ba2d-290846e15ee1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"2", 
+  RowBox[{"\[Pi]", "/", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"KerrGeoFrequencies", "[", 
+      RowBox[{"0.1`25", ",", "10", ",", "0.7`25", ",", 
+       RowBox[{"Cos", "[", 
+        RowBox[{
+         RowBox[{"\[Pi]", "/", "2"}], "+", "0.5`25"}], "]"}], ",", 
+       RowBox[{"Time", "\[Rule]", "\"\<Mino\>\""}]}], "]"}], "[", 
+     RowBox[{"[", "2", "]"}], "]"}], ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.7689101115786943`*^9, 3.768910118597683*^9}},
+ CellLabel->"In[61]:=",ExpressionUUID->"8ec72dd8-db29-48d0-988b-9b10e6f2bad3"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"-", 
+  "1.89099630519393907541766344718683107586`21.498561558049612"}]], "Print",
+ CellChangeTimes->{{3.768910112693825*^9, 3.7689101189447613`*^9}},
+ CellLabel->
+  "During evaluation of \
+In[61]:=",ExpressionUUID->"b934ac9e-8159-48ff-9422-7e951ef10b21"],
+
+Cell[BoxData["2.08586105455518127240568179133340119445`21.197474315826266"], \
+"Print",
+ CellChangeTimes->{{3.768910112693825*^9, 3.768910118947043*^9}},
+ CellLabel->
+  "During evaluation of \
+In[61]:=",ExpressionUUID->"536dddbe-96e1-429c-ac64-dab0c62707ac"],
+
+Cell[BoxData["3.27643922703390172944643440786437635474`19.405092907257313"], \
+"Print",
+ CellChangeTimes->{{3.768910112693825*^9, 3.768910118955441*^9}},
+ CellLabel->
+  "During evaluation of \
+In[61]:=",ExpressionUUID->"23921702-9987-40d7-99a6-4d1468bc4dde"],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  "3.94430419650864634577015829207663916679`19.372372432593913"}]], "Print",
+ CellChangeTimes->{{3.768910112693825*^9, 3.768910118957108*^9}},
+ CellLabel->
+  "During evaluation of \
+In[61]:=",ExpressionUUID->"84feb23a-54c5-4a5a-9ac1-3408701c2907"]
+}, Open  ]],
+
+Cell[BoxData["1.59296535721126102046042139873447330842`20.61183987071562"], \
+"Output",
+ CellChangeTimes->{{3.768910112708599*^9, 3.768910118958477*^9}},
+ CellLabel->"Out[61]=",ExpressionUUID->"dedaccbc-1ae0-4bcc-82c7-49d7078514f5"]
+}, Open  ]]
+},
+WindowSize->{1680, 1005},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 251, 4, 30, "Input",ExpressionUUID->"351026bc-d5c3-4bfc-a153-9b741634ca40"],
+Cell[CellGroupData[{
+Cell[834, 28, 261, 4, 30, "Input",ExpressionUUID->"f7ce71cc-ac03-461d-ab06-583994187e86"],
+Cell[1098, 34, 206, 3, 34, "Output",ExpressionUUID->"0ce550f6-2f5e-45a8-ad87-8b0bdb2aabfb"]
+}, Open  ]],
+Cell[1319, 40, 180, 4, 30, "Input",ExpressionUUID->"e3c23607-9d79-4060-96a7-071994e63939"],
+Cell[CellGroupData[{
+Cell[1524, 48, 199, 3, 30, "Input",ExpressionUUID->"fb525c47-6d45-4a58-a5d5-02e740fcbc89"],
+Cell[1726, 53, 28346, 632, 95, "Output",ExpressionUUID->"ce467259-c6c4-4cee-9484-d29b4e6d48dd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30109, 690, 358, 8, 30, "Input",ExpressionUUID->"58f43b8c-ebac-42b7-91f8-48ec89a85673"],
+Cell[30470, 700, 236, 5, 34, "Output",ExpressionUUID->"dab4b48d-c81b-4be0-a299-f9a815c93145"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30743, 710, 1047, 26, 52, "Input",ExpressionUUID->"05810975-ce30-4fd0-8521-243e0d5595ac"],
+Cell[31793, 738, 233, 3, 34, "Output",ExpressionUUID->"c152fd0b-e05f-4b4a-9b75-370421d6ff5e"],
+Cell[32029, 743, 251, 4, 34, "Output",ExpressionUUID->"449dbca7-d199-436a-aec9-b8726d87e916"]
+}, Open  ]],
+Cell[32295, 750, 723, 21, 52, "Input",ExpressionUUID->"ea857f45-90db-4f16-9f55-018c645b8de8",
+ CellID->1454388234],
+Cell[CellGroupData[{
+Cell[33043, 775, 1607, 44, 94, "Input",ExpressionUUID->"67d36d63-eb3d-451d-8270-415c52b30bd3"],
+Cell[34653, 821, 9561, 251, 287, "Output",ExpressionUUID->"54dff75c-a5de-4866-86e8-be1aa8beacfa"],
+Cell[44217, 1074, 9567, 252, 287, "Output",ExpressionUUID->"f176ad41-092d-417f-a674-a09c66e2cfb3"],
+Cell[53787, 1328, 10792, 308, 287, "Output",ExpressionUUID->"efcae5ec-7230-4036-9f8f-6b0b6781c974"],
+Cell[64582, 1638, 10481, 282, 287, "Output",ExpressionUUID->"9f6b9295-fa4b-4efb-838d-ec7197a9b97f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[75100, 1925, 287, 4, 30, "Input",ExpressionUUID->"637ca77d-8154-48c5-af83-671fef65d1ba"],
+Cell[75390, 1931, 12745, 230, 234, 2678, 64, "CachedBoxData", "BoxData", "Output",ExpressionUUID->"de4d7751-e0ba-43ad-bdff-d81b07b9701a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[88172, 2166, 206, 3, 30, "Input",ExpressionUUID->"91108c0d-a760-457e-b1c8-ac2c6f970d44"],
+Cell[88381, 2171, 22769, 503, 340, "Output",ExpressionUUID->"fad645c6-7ffc-44de-9a73-f3d0ef50f5dd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[111187, 2679, 212, 3, 30, "Input",ExpressionUUID->"5b14056f-5c34-4cfd-b53f-187a1935aad2"],
+Cell[111402, 2684, 25490, 539, 95, "Output",ExpressionUUID->"6799d740-343b-40b6-9b0e-f41352d085ef"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[136929, 3228, 369, 7, 30, "Input",ExpressionUUID->"b9731782-9e40-458b-916b-84a4b709dda3"],
+Cell[137301, 3237, 641, 13, 34, "Output",ExpressionUUID->"1cd970a2-0de4-4361-b50b-491790e27c91"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[137979, 3255, 783, 16, 52, "Input",ExpressionUUID->"17f7c7f1-efb3-4eef-9075-dfbff52e3f07"],
+Cell[138765, 3273, 1117, 21, 37, "Output",ExpressionUUID->"672acad4-ac63-40fa-a729-7308d170a307"],
+Cell[139885, 3296, 1252, 24, 37, "Output",ExpressionUUID->"da789f42-e8e1-4afa-ba2d-290846e15ee1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[141174, 3325, 565, 13, 30, "Input",ExpressionUUID->"8ec72dd8-db29-48d0-988b-9b10e6f2bad3"],
+Cell[CellGroupData[{
+Cell[141764, 3342, 278, 6, 24, "Print",ExpressionUUID->"b934ac9e-8159-48ff-9422-7e951ef10b21"],
+Cell[142045, 3350, 258, 5, 24, "Print",ExpressionUUID->"536dddbe-96e1-429c-ac64-dab0c62707ac"],
+Cell[142306, 3357, 258, 5, 24, "Print",ExpressionUUID->"23921702-9987-40d7-99a6-4d1468bc4dde"],
+Cell[142567, 3364, 276, 6, 24, "Print",ExpressionUUID->"84feb23a-54c5-4a5a-9ac1-3408701c2907"]
+}, Open  ]],
+Cell[142858, 3373, 232, 3, 34, "Output",ExpressionUUID->"dedaccbc-1ae0-4bcc-82c7-49d7078514f5"]
+}, Open  ]]
+}
+]
+*)
+
