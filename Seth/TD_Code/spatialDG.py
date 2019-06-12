@@ -85,7 +85,6 @@ def ReferenceElement(N):
 
     return r, Minv, MinvS
 
-
 def du_dx_DG(u, xs, K, Np, Dr, Minv):
     if K * Np != len(xs) or K * Np != len(u):
         print('In du_dx_DG, inconsistent lengths of u, xs, Np, and K. Aborting.')
@@ -108,16 +107,19 @@ def du_dx_DG(u, xs, K, Np, Dr, Minv):
 
     return np.concatenate([deriv_DG_element(uks[k], uk_rs[k], uk_ls[k], Drks[k], Minvks[k]) for k in range(K)])
 
+def du_dx_DG_dict(u, dict):
+    return du_dx_DG(u, dict['xs'], dict['K'], dict['Np'], dict['Dr'], dict['Minv'])
+
 
 def deriv_DG_element(uk, uk_r, uk_l, Drk, Minvk):
     u_star_l = numerical_flux(uk[0], uk_l, 1, 1/2)
     u_star_r = numerical_flux(uk_r, uk[-1], 1, 1/2)
 
-    return np.dot(Drk,uk) + Minvk[:,-1]*(uk[-1] - u_star_r) - Minvk[:,0]*(uk[0] - u_star_l)
+    return np.dot(Drk,uk) - Minvk[:,-1]*(uk[-1] - u_star_r) + Minvk[:,0]*(uk[0] - u_star_l)
 
 
 def numerical_flux(ur, ul, a, alpha):
-    u_diff = ul - ur
+    u_diff = -ul + ur
     u_avg  = (ul + ur)/2
 
     return a * u_avg + np.abs(a)*(1-alpha)*u_diff/2

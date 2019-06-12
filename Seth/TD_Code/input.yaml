@@ -3,12 +3,12 @@ x_max: 1
 
 nx: 200
 
-K: 4
-Np: 5
+K: 8
+Np: 15
 
 CF: 1.0e-1
 t_init: 0
-t_final: .1
+t_final: 0.1
 
 output_data: True
 output_directory: 'CWD'
@@ -18,7 +18,7 @@ equation: 'advec_l2r'   # Options:
                         # 'advec_r2l'
                         # 'wave'
 
-method: 'FD-C4'   # Options:
+method: 'DG'   # Options:
                   # 'FD-C4' - 4th order central Finite differencing
                   # 'FD-C2' - 2nd order central Finite differencing
                   # 'FD-F2' - 2nd order forward Finite differencing

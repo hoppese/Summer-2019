@@ -10,12 +10,18 @@ def du_dx_midpoint(u,dx):
 
     return du/(2*dx)
 
+def du_dx_midpoint_dict(u,dict):
+    return du_dx_midpoint(u, dict['dx_min'])
+
 def du_dx_forward_1stO(u,dx):
     du       = np.ones(len(u))
     du[-1]   = u[0] - u[-1]
     du[:-1]  = u[1:] - u[:-1]
 
     return du/dx
+
+def du_dx_forward_1stO_dict(u,dict):
+    return du_dx_forward_1stO(u, dict['dx_min'])
 
 def du_dx_forward_2ndO(u,dx):
     du       = np.ones(len(u))
@@ -25,6 +31,9 @@ def du_dx_forward_2ndO(u,dx):
 
     return du/(2*dx)
 
+def du_dx_forward_2ndO_dict(u,dict):
+    return du_dx_forward_2ndO(u, dict['dx_min'])
+
 def du_dx_backward_2ndO(u,dx):
     du      = np.ones(len(u))
     du[1]   = u[-1] - 4*u[0] + 3*u[1]
@@ -32,6 +41,9 @@ def du_dx_backward_2ndO(u,dx):
     du[2:]  = u[:-2] - 4*u[1:-1] + 3*u[2:]
 
     return du/(2*dx)
+
+def du_dx_backward_2ndO_dict(u,dict):
+    return du_dx_backward_2ndO(u, dict['dx_min'])
 
 def du_dx_4th_order(u,dx):
     u_new = np.ones(len(u))
@@ -42,3 +54,6 @@ def du_dx_4th_order(u,dx):
     u_new[2:-2] = - u[4:] + 8.0*u[3:-1] - 8.0*u[1:-3] + u[:-4]
 
     return u_new/(12.0*dx)
+
+def du_dx_4th_order_dict(u,dict):
+    return du_dx_4th_order (u, dict['dx_min'])

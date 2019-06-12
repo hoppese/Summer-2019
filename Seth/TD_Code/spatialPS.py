@@ -2,7 +2,7 @@ import numpy as np
 import math
 import scipy
 
-def du_dx_spec(u,dx):
+def du_dx_spec_dict(u,dict):
     return spec_deriv(u)
 
 def fft_coeffs(u):

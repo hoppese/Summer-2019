@@ -10,41 +10,42 @@ from output import *
 
 params = setup_run(sys.argv)
 
-print(params)
+# print(params)
 
 print_message(params,'Beginning')
 
-method_dict = {'FD-C4': du_dx_4th_order,
-               'FD-C2': du_dx_midpoint,
-               'FD-F2': du_dx_forward_2ndO,
-               'FD-B2': du_dx_backward_2ndO,
-               'PS': du_dx_spec}
+method_dict = {'FD-C4': du_dx_4th_order_dict,
+                  'FD-C2': du_dx_midpoint_dict,
+                  'FD-F2': du_dx_forward_2ndO_dict,
+                  'FD-B2': du_dx_backward_2ndO_dict,
+                  'PS': du_dx_spec_dict,
+                  'DG': du_dx_DG_dict}
 
-if params['method'] in list(method_dict.keys()):
-    xs = np.linspace(params['x_min'],
-                     params['x_max'],
-                     params['nx'],
-                     endpoint=False)
-
-    dx_min = xs[1] - xs[0]
+if params['method'] in ['FD-C4','FD-C2','FD-F2','FD-B2','PS']:
+    params['xs'] = np.linspace(params['x_min'],
+                               params['x_max'],
+                               params['nx'],
+                               endpoint=False)
 
 elif params['method'] == 'DG':
-    print('Goodbye')
-    exit(5)
+    rs, params['Minv'], params['Dr'] = ReferenceElement(params['Np']-1)
+    params['xs'] = xs_tot(params['x_min'],params['x_max'],params['K'],rs)
 
 else:
     print('Method ' +  params['method'] + ' not supported')
     exit(4)
 
-u_init  = initial_data(xs)
-u_final = evolve(u_init, dx_min,
+params['dx_min'] = params['xs'][1] - params['xs'][0]
+u_init  = initial_data(params['xs'])
+u_final = evolve(u_init,
                  params['t_init'],
                  params['t_final'],
-                 params['CF'],
                  method_dict[params['method']],
-                 RK4_step)
+                 RK4_step,
+                 params)
 
-output_data_1D(params, 'u.dat', xs, u_final)
+output_data_1D(params, 'u_init.dat', params['xs'], u_init)
+output_data_1D(params, 'u_final.dat', params['xs'], u_final)
 
 params['runlog'].close()
 
