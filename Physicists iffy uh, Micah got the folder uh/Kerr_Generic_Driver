@@ -2,10 +2,15 @@
 
 from Kerr_Generic_Orbits import *
 from StolenParams import *
+import numpy as np
 
 
 params = setup_run(sys.argv)
 
 print(params)
+print('Upsilon_r:', Upsilonr(params['p'],params['e'],params['M'],params['mu'],params['Thetamin'],params['a'],params['plmi'],params['disc']))
+print('Upsilon_theta:',Upsilontheta(params['p'],params['e'],params['M'],params['mu'],params['Thetamin'],params['a'],params['plmi'],params['disc']))
+print('Upsilon_phi:',np.real(cursiveo_n(0,params['p'],params['e'],params['M'],params['mu'],params['Thetamin'],params['a'],params['plmi'],params['disc']) + cursiveo_k(0,params['p'],params['e'],params['M'],params['mu'],params['Thetamin'],params['a'],params['plmi'],params['disc'])))
+print('Gamma:', np.real(cursiveT_n(0,params['p'],params['e'],params['M'],params['mu'],params['Thetamin'],params['a'],params['plmi'],params['disc']) + cursiveT_k(0,params['p'],params['e'],params['M'],params['mu'],params['Thetamin'],params['a'],params['plmi'],params['disc'])))
 print('t at lambda = .5:',t_of_mino(.5,params['t_0'],params['p'],params['e'],params['M'],params['mu'],params['Thetamin'],params['a'],params['plmi'],params['disc']))
-print('t at lambda = .5:',Phikn(.5,params['phi_0'],params['p'],params['e'],params['M'],params['mu'],params['Thetamin'],params['a'],params['plmi'],params['disc']))
+print('phi at lambda = .5:',phi_of_mino(.5,params['phi_0'],params['p'],params['e'],params['M'],params['mu'],params['Thetamin'],params['a'],params['plmi'],params['disc']))
