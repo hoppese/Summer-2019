@@ -21,15 +21,14 @@ def setup_run(argv):
     return params
 
 def default_params():
-    return {'N': 4,
-            't_0': 0,
-            'psi_0': 0,
+    return {'t_0': 0,
+            'phi_0': 0,
             'p': 10,
             'e': 0.7,
             'M': 1,
             'mu': 1,
             'Thetamin': .5,
-            'a': 0.0,
+            'a': 0.1,
             'plmi': 1,
             'disc': 20}
 

@@ -300,33 +300,57 @@ def Ptheta_of_chi(chi,p,e,M,mu,Thetamin,a,plmi):
     Beta = a**2 * (1 - cursiveE(p,e,M,mu,Thetamin,a,plmi)**2)
     return ((Beta * (zplus(p,e,M,mu,Thetamin,a,plmi) - zminus(p,e,M,mu,Thetamin,a,plmi) * (np.cos(chi)**2)))**(-1/2))
 
-def lambdar_of_psi(psi,lambdar_0,p,e,M,mu,Thetamin,a,plmi,disc):
-    if psi != 0:
-        dpsi_ = (psi/disc)
-        psis_ = np.arange(0,psi,dpsi_)
-        res = 0
+def cursivePr_n(p,e,M,mu,Thetamin,a,plmi,disc):
+    dpsi = (np.pi)/(disc - 1)
+    psis_ = np.arange(0,np.pi + dpsi,dpsi)
+    if len(psis_) > (disc):
+        psis = np.zeros(disc)
         for i in range(disc):
-            res = res + dpsi_ * Pr_of_psi(psis_[i],p,e,M,mu,Thetamin,a,plmi)
-        return res + lambdar_0
+            psis[i] = psis_[i]
     else:
-        return 0
+        psis = psis_
 
-def lambdatheta_of_chi(chi,lambdatheta_0,p,e,M,mu,Thetamin,a,plmi,disc):
-    if chi != 0:
-        dchi_ = (chi/disc)
-        chis_ = np.arange(0,chi,dchi_)
-        res = 0
+    f = np.zeros(disc)
+    f[:] = Pr_of_psi(psis[:],p,e,M,mu,Thetamin,a,plmi)
+    return scipy.fftpack.dct(f,type=1) * (1/2) * np.sqrt(2/(disc-1))
+#     return dct(Pr_of_phi,p,e,M,mu,Thetamin,a,plmi,disc)
+
+def cursivePtheta_n(p,e,M,mu,Thetamin,a,plmi,disc):
+    dchi = (np.pi)/(disc - 1)
+    chis_ = np.arange(0,np.pi + dchi,dchi)
+    if len(chis_) > (disc):
+        chis = np.zeros(disc)
         for i in range(disc):
-            res = res + dchi_ * Ptheta_of_chi(chis_[i],p,e,M,mu,Thetamin,a,plmi)
-        return res + lambdatheta_0
+            chis[i] = chis_[i]
     else:
-        return 0
+        chis = chis_
+
+    f = np.zeros(disc)
+    f[:] = Ptheta_of_chi(chis[:],p,e,M,mu,Thetamin,a,plmi)
+    return scipy.fftpack.dct(f,type=1) * (1/2) * np.sqrt(2/(disc-1))
+#     return dct(Ptheta_of_chi,p,e,M,mu,Thetamin,a,plmi,disc)
+
+def lambdar_of_psi(psi,p,e,M,mu,Thetamin,a,plmi,disc):
+    coefs = cursivePr_n(p,e,M,mu,Thetamin,a,plmi,disc)
+    sum = 0
+    for i in range(1,disc - 1):
+        sum = sum + coefs[i] * np.sin((i * psi)/i)
+    return np.sqrt(2/(disc-1)) * (.5 * psi * coefs[0] + .5 * coefs[disc - 1] * ((np.sin((disc - 1) * psi))/(disc - 1)) + sum)
+
+def lambdatheta_of_chi(chi,p,e,M,mu,Thetamin,a,plmi,disc):
+    coefs = cursivePtheta_n(p,e,M,mu,Thetamin,a,plmi,disc)
+    sum = 0
+    for i in range(1,disc - 1):
+        sum = sum + coefs[i] * np.sin((i * chi)/i)
+    return np.sqrt(2/(disc-1)) * (.5 * chi * coefs[0] + .5 * coefs[disc - 1] * ((np.sin((disc - 1) * chi))/(disc - 1)) + sum)
 
 def Lambdar(p,e,M,mu,Thetamin,a,plmi,disc):
-    return lambdar_of_psi((2*np.pi),0,p,e,M,mu,Thetamin,a,plmi,disc)
+    coefs = cursivePr_n(p,e,M,mu,Thetamin,a,plmi,disc)
+    return np.pi * coefs[0] * np.sqrt(2/(disc-1))
 
 def Lambdatheta(p,e,M,mu,Thetamin,a,plmi,disc):
-    return lambdatheta_of_chi((2*np.pi),0,p,e,M,mu,Thetamin,a,plmi,disc)
+    coefs = cursivePtheta_n(p,e,M,mu,Thetamin,a,plmi,disc)
+    return np.pi * coefs[0] * np.sqrt(2/(disc-1))
 
 def Upsilonr(p,e,M,mu,Thetamin,a,plmi,disc):
     return (2 * np.pi)/Lambdar(p,e,M,mu,Thetamin,a,plmi,disc)
@@ -334,89 +358,88 @@ def Upsilonr(p,e,M,mu,Thetamin,a,plmi,disc):
 def Upsilontheta(p,e,M,mu,Thetamin,a,plmi,disc):
     return (2 * np.pi)/Lambdatheta(p,e,M,mu,Thetamin,a,plmi,disc)
 
-def cursiveT_n(n,lambdar_0,p,e,M,mu,Thetamin,a,plmi,disc):
+def cursiveT_n(n,p,e,M,mu,Thetamin,a,plmi,disc):
     dpsi = ((2*np.pi)/disc)
     psis = np.arange(0,(2*np.pi),dpsi)
     res = 0
     for i in range(disc):
-        res = res + dpsi * Tr(rp(psis[i],p,e,M),p,e,M,mu,Thetamin,a,plmi) * Pr_of_psi(psis[i],p,e,M,mu,Thetamin,a,plmi) * np.exp(1j * n * Upsilonr(p,e,M,mu,Thetamin,a,plmi,disc) * lambdar_of_psi(psis[i],lambdar_0,p,e,M,mu,Thetamin,a,plmi,disc))
+        res = res + dpsi * Tr(rp(psis[i],p,e,M),p,e,M,mu,Thetamin,a,plmi) * Pr_of_psi(psis[i],p,e,M,mu,Thetamin,a,plmi) * np.exp(1j * n * Upsilonr(p,e,M,mu,Thetamin,a,plmi,disc) * lambdar_of_psi(psis[i],p,e,M,mu,Thetamin,a,plmi,disc))
     return res * (1/Lambdar(p,e,M,mu,Thetamin,a,plmi,disc))
 
 
-def cursiveT_k(k,lambdatheta_0,p,e,M,mu,Thetamin,a,plmi,disc):
+def cursiveT_k(k,p,e,M,mu,Thetamin,a,plmi,disc):
 
     dchi = ((2*np.pi)/disc)
     chis = np.arange(0,(2*np.pi),dchi)
     res = 0
     for i in range(disc):
-        res = res + dchi * Tcostheta(costhetap(chis[i],p,e,M,mu,Thetamin,a,plmi),p,e,M,mu,Thetamin,a,plmi) * Ptheta_of_chi(chis[i],p,e,M,mu,Thetamin,a,plmi) * np.exp(1j * k * Upsilontheta(p,e,M,mu,Thetamin,a,plmi,disc) * lambdatheta_of_chi(chis[i],lambdatheta_0,p,e,M,mu,Thetamin,a,plmi,disc))
+        res = res + dchi * Tcostheta(costhetap(chis[i],p,e,M,mu,Thetamin,a,plmi),p,e,M,mu,Thetamin,a,plmi) * Ptheta_of_chi(chis[i],p,e,M,mu,Thetamin,a,plmi) * np.exp(1j * k * Upsilontheta(p,e,M,mu,Thetamin,a,plmi,disc) * lambdatheta_of_chi(chis[i],p,e,M,mu,Thetamin,a,plmi,disc))
     return res * (1/Lambdatheta(p,e,M,mu,Thetamin,a,plmi,disc))
 
-print(cursiveT_n(0,0,10,.7,1,1,.5,.1,1,30) + cursiveT_k(0,0,10,.7,1,1,.5,.1,1,30))
-
-def cursiveo_n(n,lambdar_0,p,e,M,mu,Thetamin,a,plmi,disc):
+def cursiveo_n(n,p,e,M,mu,Thetamin,a,plmi,disc):
     dpsi = ((2*np.pi)/disc)
     psis = np.arange(0,(2*np.pi),dpsi)
     res = 0
     for i in range(disc):
-        res = res + dpsi * Psir(rp(psis[i],p,e,M),p,e,M,mu,Thetamin,a,plmi) * Pr_of_psi(psis[i],p,e,M,mu,Thetamin,a,plmi) * np.exp(1j * n * Upsilonr(p,e,M,mu,Thetamin,a,plmi,disc) * lambdar_of_psi(psis[i],lambdar_0,p,e,M,mu,Thetamin,a,plmi,disc))
+        res = res + dpsi * Psir(rp(psis[i],p,e,M),p,e,M,mu,Thetamin,a,plmi) * Pr_of_psi(psis[i],p,e,M,mu,Thetamin,a,plmi) * np.exp(1j * n * Upsilonr(p,e,M,mu,Thetamin,a,plmi,disc) * lambdar_of_psi(psis[i],p,e,M,mu,Thetamin,a,plmi,disc))
     return res * (1/Lambdar(p,e,M,mu,Thetamin,a,plmi,disc))
 
-def cursiveo_k(k,lambdatheta_0,p,e,M,mu,Thetamin,a,plmi,disc):
-
+def cursiveo_k(k,p,e,M,mu,Thetamin,a,plmi,disc):
     dchi = ((2*np.pi)/disc)
     chis = np.arange(0,(2*np.pi),dchi)
     res = 0
     for i in range(disc):
-        res = res + dchi * Psicostheta(costhetap(chis[i],p,e,M,mu,Thetamin,a,plmi),p,e,M,mu,Thetamin,a,plmi) * Ptheta_of_chi(chis[i],p,e,M,mu,Thetamin,a,plmi) * np.exp(1j * k * Upsilontheta(p,e,M,mu,Thetamin,a,plmi,disc) * lambdatheta_of_chi(chis[i],lambdatheta_0,p,e,M,mu,Thetamin,a,plmi,disc))
+        res = res + dchi * Psicostheta(costhetap(chis[i],p,e,M,mu,Thetamin,a,plmi),p,e,M,mu,Thetamin,a,plmi) * Ptheta_of_chi(chis[i],p,e,M,mu,Thetamin,a,plmi) * np.exp(1j * k * Upsilontheta(p,e,M,mu,Thetamin,a,plmi,disc) * lambdatheta_of_chi(chis[i],p,e,M,mu,Thetamin,a,plmi,disc))
     return res * (1/Lambdatheta(p,e,M,mu,Thetamin,a,plmi,disc))
 
-print(cursiveo_n(0,0,10,.7,1,1,.5,.1,1,30) + cursiveo_k(0,0,10,.7,1,1,.5,.1,1,30))
-
-def deltr(mino,N_r,lambdar_0,p,e,M,mu,Thetamin,a,plmi,disc):
-    if N_r % 2 == 1:
-        return "N_r must be even"
-    else:
-        Upsilonr_ = Upsilonr(p,e,M,mu,Thetamin,delttheta(mino,N_t,lambdatheta_0,p,e,M,mu,Thetamin,a,plmi,disc)a,plmi,disc)
-        res = 0
-        for i in range(1,(N_r//2) + 1):
-            res = res + ((1j * cursiveT_n(i,lambdar_0,p,e,M,mu,Thetamin,a,plmi,disc))/(i * Upsilonr_)) * np.exp(-1 * 1j * i * Upsilonr_ * mino)
-        return 2 * np.real(res)
-
-def delttheta(mino,N_t,lambdatheta_0,p,e,M,mu,Thetamin,a,plmi,disc):
-    if N_t % 2 == 1:
-        return "N_theta must be even"
-    else:
-        Upsilont_ = Upsilontheta(p,e,M,mu,Thetamin,a,plmi,disc)
-        res = 0
-        for i in range(1,(N_t//2) + 1):
-            res = res + ((1j * cursiveT_k(i,lambdatheta_0,p,e,M,mu,Thetamin,a,plmi,disc))/(i * Upsilont_)) * np.exp(-1 * 1j * i * Upsilont_ * mino)
-        return 2 * np.real(res)
-
-def delpsir(mino,N_r,lambdar_0,p,e,M,mu,Thetamin,a,plmi,disc):
-    if N_r % 2 == 1:
-        return "N_r must be even"
+def deltr(mino,p,e,M,mu,Thetamin,a,plmi,disc):
+    if disc % 2 == 1:
+        print("N_r must be even")
+        raise ValueError
     else:
         Upsilonr_ = Upsilonr(p,e,M,mu,Thetamin,a,plmi,disc)
         res = 0
-        for i in range(1,(N_r//2) + 1):
-            res = res + ((1j * cursiveo_n(i,lambdar_0,p,e,M,mu,Thetamin,a,plmi,disc))/(i * Upsilonr_)) * np.exp(-1 * 1j * i * Upsilonr_ * mino)
+        for i in range(1,(disc//2) + 1):
+            res = res + ((1j * cursiveT_n(i,p,e,M,mu,Thetamin,a,plmi,disc))/(i * Upsilonr_)) * np.exp(-1 * 1j * i * Upsilonr_ * mino)
         return 2 * np.real(res)
 
-def delpsitheta(mino,N_t,lambdatheta_0,p,e,M,mu,Thetamin,a,plmi,disc):
-    if N_t % 2 == 1:
-        return "N_theta must be even"
+def delttheta(mino,p,e,M,mu,Thetamin,a,plmi,disc):
+    if disc % 2 == 1:
+        print("N_r must be even")
+        raise ValueError
     else:
         Upsilont_ = Upsilontheta(p,e,M,mu,Thetamin,a,plmi,disc)
         res = 0
-        for i in range(1,(N_t//2) + 1):
-            res = res + ((1j * cursiveo_k(i,lambdatheta_0,p,e,M,mu,Thetamin,a,plmi,disc))/(i * Upsilont_)) * np.exp(-1 * 1j * i * Upsilont_ * mino)
+        for i in range(1,(disc//2) + 1):
+            res = res + ((1j * cursiveT_k(i,p,e,M,mu,Thetamin,a,plmi,disc))/(i * Upsilont_)) * np.exp(-1 * 1j * i * Upsilont_ * mino)
         return 2 * np.real(res)
 
-def t_of_mino(mino,N,lambdar_0,lambdatheta_0,t_0,p,e,M,mu,Thetamin,a,plmi,disc):
-    Gamma = np.real(cursiveT_n(0,lambdar_0,p,e,M,mu,Thetamin,a,plmi,disc) + cursiveT_k(0,lambdatheta_0,p,e,M,mu,Thetamin,a,plmi,disc))
-    return Gamma * mino + deltr(mino,N,lambdar_0,p,e,M,mu,Thetamin,a,plmi,disc) + delttheta(mino,N,lambdatheta_0,p,e,M,mu,Thetamin,a,plmi,disc) + t_0
+def delphir(mino,p,e,M,mu,Thetamin,a,plmi,disc):
+    if disc % 2 == 1:
+        print("N_r must be even")
+        raise ValueError
+    else:
+        Upsilonr_ = Upsilonr(p,e,M,mu,Thetamin,a,plmi,disc)
+        res = 0
+        for i in range(1,(disc//2) + 1):
+            res = res + ((1j * cursiveo_n(i,p,e,M,mu,Thetamin,a,plmi,disc))/(i * Upsilonr_)) * np.exp(-1 * 1j * i * Upsilonr_ * mino)
+        return 2 * np.real(res)
 
-def psi_of_mino(mino,N,lambdar_0,lambdatheta_0,psi_0,p,e,M,mu,Thetamin,a,plmi,disc):
-    Upsilonpsi = np.real(cursiveo_n(0,lambdar_0,p,e,M,mu,Thetamin,a,plmi,disc) + cursiveo_k(0,lambdatheta_0,p,e,M,mu,Thetamin,a,plmi,disc))
-    return Upsilonpsi * mino + delpsir(mino,N,lambdar_0,p,e,M,mu,Thetamin,a,plmi,disc) + delpsitheta(mino,N,lambdatheta_0,p,e,M,mu,Thetamin,a,plmi,disc) + psi_0
+def delphitheta(mino,p,e,M,mu,Thetamin,a,plmi,disc):
+    if disc % 2 == 1:
+        print("N_r must be even")
+        raise ValueError
+    else:
+        Upsilont_ = Upsilontheta(p,e,M,mu,Thetamin,a,plmi,disc)
+        res = 0
+        for i in range(1,(disc//2) + 1):
+            res = res + ((1j * cursiveo_k(i,p,e,M,mu,Thetamin,a,plmi,disc))/(i * Upsilont_)) * np.exp(-1 * 1j * i * Upsilont_ * mino)
+        return 2 * np.real(res)
+
+def t_of_mino(mino,t_0,p,e,M,mu,Thetamin,a,plmi,disc):
+    Gamma = np.real(cursiveT_n(0,p,e,M,mu,Thetamin,a,plmi,disc) + cursiveT_k(0,p,e,M,mu,Thetamin,a,plmi,disc))
+    return Gamma * mino + deltr(mino,p,e,M,mu,Thetamin,a,plmi,disc) + delttheta(mino,p,e,M,mu,Thetamin,a,plmi,disc) + t_0
+
+def phi_of_mino(mino,phi_0,p,e,M,mu,Thetamin,a,plmi,disc):
+    Upsilonphi = np.real(cursiveo_n(0,p,e,M,mu,Thetamin,a,plmi,disc) + cursiveo_k(0,p,e,M,mu,Thetamin,a,plmi,disc))
+    return Upsilonphi * mino + delphir(mino,p,e,M,mu,Thetamin,a,plmi,disc) + delphitheta(mino,p,e,M,mu,Thetamin,a,plmi,disc) + phi_0

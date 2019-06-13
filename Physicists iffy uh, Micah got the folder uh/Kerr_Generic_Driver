@@ -7,5 +7,5 @@ from StolenParams import *
 params = setup_run(sys.argv)
 
 print(params)
-print('T_kn values:',Tkn(params['p'],params['e'],params['M'],params['mu'],params['Thetamin'],params['a'],params['plmi'],params['disc']))
-print('Phi_kn values:',Phikn(params['p'],params['e'],params['M'],params['mu'],params['Thetamin'],params['a'],params['plmi'],params['disc']))
+print('t at lambda = .5:',t_of_mino(.5,params['t_0'],params['p'],params['e'],params['M'],params['mu'],params['Thetamin'],params['a'],params['plmi'],params['disc']))
+print('t at lambda = .5:',Phikn(.5,params['phi_0'],params['p'],params['e'],params['M'],params['mu'],params['Thetamin'],params['a'],params['plmi'],params['disc']))
