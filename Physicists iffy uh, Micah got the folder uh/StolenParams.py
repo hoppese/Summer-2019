@@ -22,8 +22,6 @@ def setup_run(argv):
 
 def default_params():
     return {'N': 4,
-            'lambdar_0': 0,
-            'lambdatheta_0': 0,
             't_0': 0,
             'psi_0': 0,
             'p': 10,
