@@ -332,17 +332,17 @@ def cursivePtheta_n(p,e,M,mu,Thetamin,a,plmi,disc):
 
 def lambdar_of_psi(psi,p,e,M,mu,Thetamin,a,plmi,disc):
     coefs = cursivePr_n(p,e,M,mu,Thetamin,a,plmi,disc)
-    sum = 0
+    res = 0
     for i in range(1,disc - 1):
-        sum = sum + coefs[i] * np.sin((i * psi)/i)
-    return np.sqrt(2/(disc-1)) * (.5 * psi * coefs[0] + .5 * coefs[disc - 1] * ((np.sin((disc - 1) * psi))/(disc - 1)) + sum)
+        res = res + coefs[i] * np.sin((i * psi))/i
+    return np.sqrt(2/(disc-1)) * (.5 * psi * coefs[0] + .5 * coefs[disc - 1] * ((np.sin((disc - 1) * psi))/(disc - 1)) + res)
 
 def lambdatheta_of_chi(chi,p,e,M,mu,Thetamin,a,plmi,disc):
     coefs = cursivePtheta_n(p,e,M,mu,Thetamin,a,plmi,disc)
-    sum = 0
+    res = 0
     for i in range(1,disc - 1):
-        sum = sum + coefs[i] * np.sin((i * chi)/i)
-    return np.sqrt(2/(disc-1)) * (.5 * chi * coefs[0] + .5 * coefs[disc - 1] * ((np.sin((disc - 1) * chi))/(disc - 1)) + sum)
+        res = res + coefs[i] * np.sin((i * chi))/i
+    return np.sqrt(2/(disc-1)) * (.5 * chi * coefs[0] + .5 * coefs[disc - 1] * ((np.sin((disc - 1) * chi))/(disc - 1)) + res)
 
 def Lambdar(p,e,M,mu,Thetamin,a,plmi,disc):
     coefs = cursivePr_n(p,e,M,mu,Thetamin,a,plmi,disc)
